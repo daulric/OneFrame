@@ -9,6 +9,10 @@ export type Framework = {
 local RunService = game:GetService("RunService")
 local compile = require(script.Parent:WaitForChild("compile"))
 
+local Signal = require(script.Parent:WaitForChild("Signal"))
+
+local StartedSignal = Signal.new()
+
 function Connection(scripts: Framework, scriptName, ignorePrint, ...: any)
 	task.wait()
 	local Items = table.unpack({...})

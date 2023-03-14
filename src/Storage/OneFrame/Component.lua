@@ -1,6 +1,10 @@
 local module = {}
 module.__index = module
 
+local Signal = require(script.Parent:WaitForChild("Signal"))
+
+local RegisterSignal = Signal.new()
+
 local RegisterClass = {}
 local compile = require(script.Parent:WaitForChild("compile"))
 
@@ -14,6 +18,7 @@ function Register(class: {[any]: any}, name, Type: RegisterType)
 		class.name = ""..name
 	end
 	
+	RegisterSignal:Fire(name, class)
 	return class
 end
 
@@ -46,6 +51,9 @@ function module:GetComponent(name: string)
 	for i, v in pairs(RegisterClass) do
 		if v.name == name then
 			return v
+		else
+			warn("couldn't find", name)
+			break
 		end
 	end
 end
@@ -60,6 +68,10 @@ function module:GetComponents()
 		return component
 	end
 
+end
+
+function module:GetRegisteredSignal(handler)
+	RegisterSignal:Connect(handler)
 end
 
 local Component = compile(module)
