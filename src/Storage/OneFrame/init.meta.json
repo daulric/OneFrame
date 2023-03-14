@@ -1,5 +1,7 @@
 {
     "properties" : {
-        
+        "Attributes": {
+            "OneFrame" : {"Bool": true}
+        }
     }
 }
