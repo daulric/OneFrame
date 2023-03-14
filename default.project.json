@@ -19,6 +19,12 @@
       "$className": "ReplicatedFirst",
       "$ignoreUnknownInstances": true,
       "$path": "src/Client"
+    },
+
+    "StarterPack" : {
+      "$className": "StarterPack",
+      "$ignoreUnknownInstances": true,
+      "$path": "src/Backpack"
     }
   }
 }
