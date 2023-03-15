@@ -9,9 +9,24 @@ export type Framework = {
 local RunService = game:GetService("RunService")
 local compile = require(script.Parent:WaitForChild("compile"))
 
-local Signal = require(script.Parent:WaitForChild("Signal"))
+function render(scripts, name, ignorePrint, Items)
+	if scripts.render then
+		local renderSuccess, err = pcall(function()
+			task.spawn(function()
+				scripts:render(Items)
+			end)
+		end)
 
-local StartedSignal = Signal.new()
+		if renderSuccess then
+			if not ignorePrint then
+				print(`finished rendering {name}`)
+			end
+		else
+			warn(err)
+		end
+
+	end
+end
 
 function Connection(scripts: Framework, scriptName, ignorePrint, ...: any)
 	task.wait()
@@ -29,40 +44,28 @@ function Connection(scripts: Framework, scriptName, ignorePrint, ...: any)
 	task.spawn(function()
 		
 		if scripts.preload then
-			local success, err = pcall(function()
+			local preloadSuccess, err = pcall(function()
 				task.spawn(function()
 					scripts:preload(Items)
 				end)
 			end)
 
-			if success then
+			if preloadSuccess then
 				if not ignorePrint then
 					print(`finished preloading {name}`)
 				end
+
+				task.spawn(render, scripts, name, ignorePrint, Items)
 			else
 				warn(err)
 			end
 
 		end
 
-		task.wait()
-
-		if scripts.render then
-			local success, err = pcall(function()
-				task.spawn(function()
-					scripts:render(Items)
-				end)
-			end)
-
-			if success then
-				if not ignorePrint then
-					print(`finished rendering {name}`)
-				end
-			else
-				warn(err)
-			end
-
+		if not scripts.preload then
+			task.spawn(render, scripts, name, ignorePrint, Items)
 		end
+
 	end)
 
 end
