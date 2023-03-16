@@ -1,4 +1,4 @@
-function compile(data: { [any]: any}, name)
+function compile(data: { [any]: any})
 	data.Success = false
 	
 	local success, completed = pcall(function()

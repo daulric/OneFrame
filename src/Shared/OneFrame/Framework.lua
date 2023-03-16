@@ -5,9 +5,11 @@ export type Framework = {
 	test: boolean,
 	name: string
 }
+local Players = game:GetService("Players")
 
 local RunService = game:GetService("RunService")
 local compile = require(script.Parent:WaitForChild("compile"))
+local GetInstance = require(script.Parent:WaitForChild("getInstance"))
 
 function render(scripts, name, ignorePrint, Items)
 	if scripts.render then
