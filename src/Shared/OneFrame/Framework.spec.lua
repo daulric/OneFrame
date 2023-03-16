@@ -7,14 +7,14 @@ return function ()
             local testFolder = script.Parent.Parent:WaitForChild("Test")
 
             if RunService:IsServer() then
-                local Start = Framework.Server(testFolder)
+                local Start = Framework.Server(testFolder, true)
 
                 expect(Start).to.be.a("boolean")
                 expect(Start).to.be.ok() 
             end
 
             if RunService:IsClient() then
-                local Start = Framework.Client(testFolder)
+                local Start = Framework.Client(testFolder, true)
 
                 expect(Start).to.be.a("boolean")
                 expect(Start).to.be.ok()

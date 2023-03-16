@@ -48,14 +48,19 @@ function module:GetComponent(name: string)
 		return
 	end
 	
+	local ClassGotten
+
 	for i, v in pairs(RegisterClass) do
 		if v.name == name then
-			return v
+			ClassGotten = v
+			break
 		else
 			warn("couldn't find", name)
 			break
 		end
 	end
+
+	return ClassGotten
 end
 
 function module:GetComponents()
