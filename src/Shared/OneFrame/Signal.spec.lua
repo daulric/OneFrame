@@ -2,7 +2,6 @@ return function ()
     local Signal = require(script.Parent:WaitForChild("Signal"))
 
     describe("Create a Signal Event", function()
-        FOCUS()
 
         local NewSignal = Signal.new()
         
