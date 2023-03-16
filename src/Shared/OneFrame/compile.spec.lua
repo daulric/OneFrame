@@ -1,7 +1,7 @@
 return function ()
     local compile = require(script.Parent:WaitForChild("compile"))
 
-    describe("to compile tables", function()
+    describe("Should Compile the Table", function()
 
         local compiled = compile({
             Hello = 10,

@@ -1,7 +1,8 @@
 return function ()
     local Component = require(script.Parent:WaitForChild("Component"))
 
-    describe("Creating OneFrame Component", function()
+    describe("Running Components", function()
+
         it("The Component should create a component that runs when published!", function()
             local New = Component:serve("live")
     
