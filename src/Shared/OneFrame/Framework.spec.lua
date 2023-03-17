@@ -7,7 +7,7 @@ return function ()
 
         it("Server Components Running", function()
             if RunService:IsServer() then
-                local Start = Framework.Server(testFolder, true)
+                local Start = Framework.Server(testFolder)
 
                 expect(Start).to.be.a("boolean")
                 expect(Start).to.be.ok() 
@@ -16,7 +16,7 @@ return function ()
 
         it("Client Components Running", function()
             if RunService:IsClient() then
-                local Start = Framework.Client(testFolder, true)
+                local Start = Framework.Client(testFolder)
 
                 expect(Start).to.be.a("boolean")
                 expect(Start).to.be.ok()

@@ -11,6 +11,7 @@ local RunService = game:GetService("RunService")
 local compile = require(script.Parent:WaitForChild("compile"))
 
 function render(scripts, name, ignorePrint, Items)
+	local Start = os.clock()
 	if scripts.render then
 		local renderSuccess, err = pcall(function()
 			task.spawn(function()
@@ -19,8 +20,9 @@ function render(scripts, name, ignorePrint, Items)
 		end)
 
 		if renderSuccess then
+			local End = math.ceil(os.clock() - Start)
 			if not ignorePrint then
-				print(`finished rendering {name}`)
+				print(`finished rendering {name} : took {End} ms`)
 			end
 		else
 			warn(err)
@@ -30,6 +32,7 @@ function render(scripts, name, ignorePrint, Items)
 end
 
 function Connection(scripts: Framework, scriptName, ignorePrint, ...: any)
+	local Start = os.clock()
 	task.wait()
 	local Items = table.unpack({...})
 	
@@ -52,8 +55,9 @@ function Connection(scripts: Framework, scriptName, ignorePrint, ...: any)
 			end)
 
 			if preloadSuccess then
+				local End = math.ceil(os.clock() - Start)
 				if not ignorePrint then
-					print(`finished preloading {name}`)
+					print(`finished preloading {name}: took {End} ms`)
 				end
 
 				task.spawn(render, scripts, name, ignorePrint, Items)
