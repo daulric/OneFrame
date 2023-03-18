@@ -6,7 +6,7 @@
 
 # **Method 1: Use Rojo**
 
-### Copy the OneFrame folder [here](src/Shared/), and paste it into your workspace. Use Rojo to port the files into your project
+### Copy the OneFrame folder [here](src), and paste it into your workspace and rename the file to OneFrame. Use Rojo to port the files into your project
 
 #
 

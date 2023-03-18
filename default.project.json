@@ -6,25 +6,28 @@
     "ReplicatedStorage": {
       "$className": "ReplicatedStorage",
       "$ignoreUnknownInstances": true,
-      "$path": "src/Shared"
+      "$path": "Service/Shared",
+      "OneFrame" : {
+        "$path" : "src"
+      }
     },
 
     "ServerScriptService": {
       "$className": "ServerScriptService",
       "$ignoreUnknownInstances": true,
-      "$path": "src/Server"
+      "$path": "Service/Server"
     },
 
     "ReplicatedFirst": {
       "$className": "ReplicatedFirst",
       "$ignoreUnknownInstances": true,
-      "$path": "src/Client"
+      "$path": "Service/Client"
     },
 
     "StarterPack" : {
       "$className": "StarterPack",
       "$ignoreUnknownInstances": true,
-      "$path": "src/Backpack"
+      "$path": "Service/Backpack"
     }
   }
 }
