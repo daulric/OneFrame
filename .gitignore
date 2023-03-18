@@ -4,3 +4,6 @@
 /aftman.toml
 /src/Backpack
 /src/Shared/TestEz
+/Packages
+/wally.toml
+/wally.lock

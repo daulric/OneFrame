@@ -6,7 +6,10 @@
     "ReplicatedStorage": {
       "$className": "ReplicatedStorage",
       "$ignoreUnknownInstances": true,
-      "$path": "src/Shared"
+      "$path": "src/Shared",
+      "Packages" :{
+        "$path" : "Packages"
+      }
     },
 
     "ServerScriptService": {

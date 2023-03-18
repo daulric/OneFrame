@@ -18,7 +18,7 @@ function Register(class: {[any]: any}, name, Type: RegisterType)
 		class.name = ""..name
 	end
 	
-	RegisterSignal:Fire(name, class)
+	RegisterSignal:Fire(name)
 	return class
 end
 
