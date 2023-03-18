@@ -19,7 +19,6 @@ function Register(class: {[any]: any}, name, Type: RegisterType)
 	end
 	
 	RegisterSignal:Fire(name)
-	return class
 end
 
 
