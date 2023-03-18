@@ -1,0 +1,33 @@
+{
+  "name": "OneFrame",
+  "tree": {
+    "$className": "DataModel",
+
+    "ReplicatedStorage": {
+      "$className": "ReplicatedStorage",
+      "$ignoreUnknownInstances": true,
+      "$path": "Service/Shared",
+      "OneFrame" : {
+        "$path" : "src"
+      }
+    },
+
+    "ServerScriptService": {
+      "$className": "ServerScriptService",
+      "$ignoreUnknownInstances": true,
+      "$path": "Service/Server"
+    },
+
+    "ReplicatedFirst": {
+      "$className": "ReplicatedFirst",
+      "$ignoreUnknownInstances": true,
+      "$path": "Service/Client"
+    },
+
+    "StarterPack" : {
+      "$className": "StarterPack",
+      "$ignoreUnknownInstances": true,
+      "$path": "Service/Backpack"
+    }
+  }
+}
