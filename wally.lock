@@ -4,5 +4,10 @@ registry = "test"
 
 [[package]]
 name = "daulric/oneframe"
-version = "0.2.0"
-dependencies = [["OneFrame", "daulric/oneframe@0.2.0"]]
+version = "0.2.1"
+dependencies = [["roact", "roblox/roact@1.4.4"]]
+
+[[package]]
+name = "roblox/roact"
+version = "1.4.4"
+dependencies = []

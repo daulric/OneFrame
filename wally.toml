@@ -5,4 +5,5 @@ registry = "https://github.com/UpliftGames/wally-index"
 realm = "shared"
 
 [dependencies]
-OneFrame = "daulric/oneframe@0.2.0"
+# oneframe = "daulric/oneframe@0.2.0"
+roact = "roblox/roact@1.4.4"
