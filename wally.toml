@@ -1,9 +1,7 @@
 [package]
 name = "daulric/oneframe"
-version = "0.2.1"
+version = "0.2.3"
 registry = "https://github.com/UpliftGames/wally-index"
 realm = "shared"
 
 [dependencies]
-# oneframe = "daulric/oneframe@0.2.0"
-roact = "roblox/roact@1.4.4"
