@@ -11,7 +11,6 @@
 #
 
 # **Method 2: Use Wally**
-### paste this under your dependencies in wally.toml
-`OneFrame = "daulric/oneframe@0.2.3"`
+### Get the Package from [Wally](https://wally.run/package/daulric/oneframe)
 
 ### There is no other method at this time so bear with us.
