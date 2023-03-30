@@ -16,8 +16,7 @@ type Component = {
 
 export type Framework = {
 	Component: Component,
-	StartServer: (Instance: Instance, ignorePrint: any, ...any) -> boolean,
-	StartClient: (Instance: Instance, ignorePrint: any, ...any) -> boolean,
+	Start: (Instance: Instance, ignorePrint: any, ...any) -> boolean,
 }
 
 return module

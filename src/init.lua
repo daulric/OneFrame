@@ -5,8 +5,7 @@ local Framework = require(script:WaitForChild("Framework"))
 
 local Compiled: Help.Framework = compile({
 	Component = require(script:WaitForChild("Component")),
-	StartServer = Framework.Server,
-	StartClient = Framework.Client
+	Start = Framework
 })
 
 if Compiled.Success then

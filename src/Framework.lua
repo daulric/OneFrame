@@ -106,27 +106,10 @@ function InitFramework(Folder: Instance, ignorePrint, ...: any)
 	return true
 end
 
-function InitClient(Folder: Instance, ignorePrint: boolean, ...: any)
-	if RunService:IsClient() then
-		return InitFramework(Folder, ignorePrint, ...)
-	else
-		warn("Cannot Run Modules With Server", Folder.Name)
-	end
-end
-
-function InitServer(Folder: Instance, ignorePrint: boolean, ...)
-	if RunService:IsServer() then
-		return InitFramework(Folder, ignorePrint, ...)
-	else
-		warn("Cannot Run Modules With Client", Folder.Name)
-	end
-end
-
 local Compiled = compile({
-	Client = InitClient,
-	Server = InitServer,
+	Framework = InitFramework
 })
 
 if Compiled.Success then
-	return Compiled
+	return Compiled.Framework
 end
