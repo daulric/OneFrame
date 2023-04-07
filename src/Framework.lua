@@ -88,7 +88,7 @@ function InitFramework(Folder: Instance, ignorePrint, ...: any)
 
 			local End = math.ceil(os.clock() - Start)
 
-			local message = `Loading {name} took {End} ms`
+			local message = `Loading {name} : Took {End} ms`
 
 			if not ignorePrint then
 				if RunService:IsClient() then
