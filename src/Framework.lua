@@ -56,8 +56,15 @@ function Connection(scripts: Framework, scriptName, ignorePrint, ...: any)
 
 			if preloadSuccess then
 				local End = math.ceil(os.clock() - Start)
+
 				if not ignorePrint then
-					print(`finished preloading {name}: took {End} ms`)
+					local message = `Preloading {name} took {End} ms`
+					
+					if RunService:IsClient() then
+						print(`Client // {message}`)
+					elseif RunService:IsServer() then
+						print(`Server // {message}`)
+					end
 				end
 
 				task.spawn(render, scripts, name, ignorePrint, Items)
