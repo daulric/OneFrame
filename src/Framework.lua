@@ -10,8 +10,8 @@ local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local compile = require(script.Parent:WaitForChild("compile"))
 
-function render(scripts, name, ignorePrint, Items)
-	local Start = os.clock()
+function render(scripts, Items)
+
 	if scripts.render then
 		local renderSuccess, err = pcall(function()
 			task.spawn(function()
@@ -19,27 +19,14 @@ function render(scripts, name, ignorePrint, Items)
 			end)
 		end)
 
-		if renderSuccess then
-			local End = math.ceil(os.clock() - Start)
-			if not ignorePrint then
-				local message = `Rendering {name} took {End} ms`
-					
-				if RunService:IsClient() then
-					print(`Client // {message}`)
-				elseif RunService:IsServer() then
-					print(`Server // {message}`)
-				end
-
-			end
-		else
+		if not renderSuccess then
 			warn(err)
 		end
 
 	end
 end
 
-function Connection(scripts: Framework, scriptName, ignorePrint, ...: any)
-	local Start = os.clock()
+function Connection(scripts: Framework, scriptName, ...: any)
 	task.wait()
 	local Items = table.unpack({...})
 	
@@ -62,19 +49,7 @@ function Connection(scripts: Framework, scriptName, ignorePrint, ...: any)
 			end)
 
 			if preloadSuccess then
-				local End = math.ceil(os.clock() - Start)
-
-				if not ignorePrint then
-					local message = `Preloading {name} took {End} ms`
-					
-					if RunService:IsClient() then
-						print(`Client // {message}`)
-					elseif RunService:IsServer() then
-						print(`Server // {message}`)
-					end
-				end
-
-				task.spawn(render, scripts, name, ignorePrint, Items)
+				task.spawn(render, scripts, Items)
 			else
 				warn(err)
 			end
@@ -82,7 +57,7 @@ function Connection(scripts: Framework, scriptName, ignorePrint, ...: any)
 		end
 
 		if not scripts.preload then
-			task.spawn(render, scripts, name, ignorePrint, Items)
+			task.spawn(render, scripts, Items)
 		end
 
 	end)
@@ -92,6 +67,7 @@ end
 function InitFramework(Folder: Instance, ignorePrint, ...: any)
 
 	for i, v in ipairs(Folder:GetChildren()) do
+		local Start = os.clock()
 
 		if v:IsA("ModuleScript") then
 			
@@ -103,12 +79,22 @@ function InitFramework(Folder: Instance, ignorePrint, ...: any)
 				warn(`required data could not been executed for {name}`)
 				return
 			end
-
+			
 			if scripts.live then
-				Connection(scripts, name, ignorePrint, ...)
-			elseif scripts.test then
-				if RunService:IsStudio() then
-					Connection(scripts, name, ignorePrint, ...)
+				Connection(scripts, name, ...)
+			elseif scripts.test and RunService:IsStudio() then
+				Connection(scripts, name, ...)
+			end
+
+			local End = math.ceil(os.clock() - Start)
+
+			local message = `Loading {name} took {End} ms`
+
+			if not ignorePrint then
+				if RunService:IsClient() then
+					print(`Client // {message}`)
+				elseif RunService:IsServer() then
+					print(`Server // {message}`)
 				end
 			end
 
