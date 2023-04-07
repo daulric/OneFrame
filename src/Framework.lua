@@ -22,7 +22,14 @@ function render(scripts, name, ignorePrint, Items)
 		if renderSuccess then
 			local End = math.ceil(os.clock() - Start)
 			if not ignorePrint then
-				print(`finished rendering {name} : took {End} ms`)
+				local message = `Rendering {name} took {End} ms`
+					
+				if RunService:IsClient() then
+					print(`Client // {message}`)
+				elseif RunService:IsServer() then
+					print(`Server // {message}`)
+				end
+
 			end
 		else
 			warn(err)
