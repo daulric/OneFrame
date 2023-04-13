@@ -1,14 +1,20 @@
 export type Framework = {
+	init: (self: any, ...any) -> (),
 	render: (self: any, ...any) -> (),
 	preload: (self: any, ...any) -> (),
+	closing: (self: any, ...any) -> (),
 	live: boolean,
 	test: boolean,
 	name: string
 }
+
+local Utilites = script.Parent:WaitForChild("Utilities")
 local Players = game:GetService("Players")
 
 local RunService = game:GetService("RunService")
-local compile = require(script.Parent:WaitForChild("compile"))
+local compile = require(Utilites.compile)
+
+local mainFunctions = {"init", "closing", "preload", "render", "Cleanup", "Event", "live", "test", "shared", "state", "setState", "require", "name"}
 
 function render(scripts, Items)
 
@@ -40,7 +46,20 @@ function Connection(scripts: Framework, scriptName, ...: any)
 	end
 
 	task.spawn(function()
-		
+		-- this is just here to load variables and other stuff
+		if scripts.init then
+			local initSuccess, err = pcall(function()
+				task.spawn(function()
+					scripts:init(Items)
+				end)
+			end)
+
+			if not initSuccess then
+				warn(err)
+			end
+
+		end
+
 		if scripts.preload then
 			local preloadSuccess, err = pcall(function()
 				task.spawn(function()
@@ -54,13 +73,19 @@ function Connection(scripts: Framework, scriptName, ...: any)
 				warn(err)
 			end
 
-		end
-
-		if not scripts.preload then
+		elseif not scripts.preload then
 			task.spawn(render, scripts, Items)
 		end
-
+	
 	end)
+
+	if scripts.closing and RunService:IsServer() then
+		game:BindToClose(function()
+			task.spawn(function()
+				scripts:closing(Items)
+			end)
+		end)
+	end
 
 end
 
@@ -71,26 +96,28 @@ function InitFramework(Folder: Instance, ignorePrint, ...: any)
 
 		if v:IsA("ModuleScript") then
 			
-			local success, scripts: Framework, name = pcall(function()
-				return require(v), v.Name
+			local success, scripts, name = pcall(function()
+				local Data: Framework = require(v)
+				print(Data)
+				return Data, Data.name
 			end)
 
 			if not success then
 				warn(`required data could not been executed for {name}`)
-				return
 			end
 			
 			if scripts.live then
 				Connection(scripts, name, ...)
-			elseif scripts.test and RunService:IsStudio() then
-				Connection(scripts, name, ...)
+			elseif scripts.test then
+				if RunService:IsStudio() then
+					Connection(scripts, name, ...)
+				end
 			end
 
-			local End = math.ceil(os.clock() - Start)
-
-			local message = `Loading {name} : Took {End} ms`
-
 			if not ignorePrint then
+				local End = math.ceil(os.clock() - Start)
+				local message = `{name} : Took {End} ms`
+
 				if RunService:IsClient() then
 					print(`Client // {message}`)
 				elseif RunService:IsServer() then

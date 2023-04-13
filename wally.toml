@@ -1,7 +1,7 @@
 [package]
 name = "daulric/oneframe"
-description = "A module used to run folder or object with modular code in one single server or client"
-version = "0.2.9"
+description = "A module used to run folders or objects with modular code inside one single server or client"
+version = "0.3.0"
 registry = "https://github.com/UpliftGames/wally-index"
 realm = "shared"
 

@@ -7,8 +7,8 @@
       "$className": "ReplicatedStorage",
       "$ignoreUnknownInstances": true,
       "$path": "Service/Shared",
-      "OneFrame" : {
-        "$path" : "src"
+      "OneFrame": {
+        "$path": "src"
       }
     },
 
@@ -18,10 +18,13 @@
       "$path": "Service/Server"
     },
 
-    "ReplicatedFirst": {
-      "$className": "ReplicatedFirst",
-      "$ignoreUnknownInstances": true,
-      "$path": "Service/Client"
+    "StarterPlayer": {
+      "$className": "StarterPlayer",
+      "StarterPlayerScripts": {
+        "$className": "StarterPlayerScripts",
+        "$path": "Service/Client",
+        "$ignoreUnknownInstances": true
+      }
     },
 
     "StarterPack" : {

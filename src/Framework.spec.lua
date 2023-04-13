@@ -2,7 +2,7 @@ return function ()
     local Framework = require(script.Parent:WaitForChild("Framework"))
 
     describe("Framework Component", function()
-        local testFolder = script.Parent.Parent:WaitForChild("Test")
+        local testFolder = game:GetService("ReplicatedStorage"):WaitForChild("Test")
 
         it("Components Should Run", function()
             local Start = Framework(testFolder)
