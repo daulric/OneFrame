@@ -22,3 +22,5 @@
 # **Documentation**
 ### **[Start](/docs/Start.md)** - to run the code on the server / client
 ### **[Component](/docs/Component/)** - using in running the code called by **'.Start'**
+- ### **[createComponent](/docs/Component/createComponent.md)**
+- ### **[extend](/docs/Component/extend.md)**
