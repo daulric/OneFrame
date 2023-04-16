@@ -1,6 +1,6 @@
 <div class = "logo">
     <p align="center">
-        <img src = "docs/Images/logo.png" style="border-radius:50%"/>
+        <img src = "docs/Images/logo.png" style="border-radius:10%"/>
     </p>
 </div>
 
