@@ -23,28 +23,36 @@ function Register(class: {[any]: any}, name, Type: RegisterType)
 	class[Type] = true
 
 	class.state = {}
+	class.state.isState = true
+	table.freeze(class.state)
 
 	function class:setState(value: any)
+		if not table.isfrozen(class.state) and class.state.isState ~= true then
+			warn("this table was not properly set!")
+			return
+		end
+
+		local NewClassState = table.clone(class.state)
+
 		if type(value) == "table" then
 			for index, stuff in pairs(value) do
-				class.state[tostring(index)] = stuff
+				NewClassState[tostring(index)] = stuff
 			end
 		elseif type(value) == "function" then
-			local newState = value(class.state)
+			local newState = value(NewClassState)
 
 			if type(newState) == "table" then 
 				for index, stuff in pairs(newState) do
-					class.state[tostring(index)] = stuff
+					NewClassState[tostring(index)] = stuff
 				end
 			else
-				warn("table didn't return")
+				table.insert(NewClassState, value)
 			end
 		end
 
-		if type(value) ~="function" or type(value) ~="table" then
-			warn("only table and function can be used")
-		end
-
+		NewClassState.isState = true
+		class.state = NewClassState
+		table.freeze(class.state)
 	end
 
 	function class:require(modulescript: ModuleScript)
@@ -74,7 +82,7 @@ function CheckId(Table: {[string]: any}, name: string)
 	end
 end
 
-function module:serve(name)
+function module:extend(name, test)
 	-- this here runs the component once
 	local class = {}
 
@@ -83,24 +91,16 @@ function module:serve(name)
 		return class
 	end
 
-	Register(class, name, "live")
-	LiveClass[tostring(name)] = class
-
-	return class
-end
-
-function module:test(name: any)
-	local class = {}
-
-	if CheckId(TestClass, name) then
-		warn(`{name} already exsist in this table`)
-		return class
+	if test == true then
+		Register(class, name, "test")
+		TestClass[tostring(name)] = class
+	else
+		Register(class, name, "live")
+		LiveClass[tostring(name)] = class
 	end
 
-	Register(class, name, "test")
-	TestClass[tostring(name)] = class
-
 	return class
+	
 end
 
 function module:createComponent()

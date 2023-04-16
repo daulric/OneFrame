@@ -18,7 +18,7 @@ type require = {
 	[string]: any
 }
 
-type Execute = {
+type Components = {
 	state: state,
 	setState: (self: any, state: setState) -> (),
 	require: (self: any, module: ModuleScript) -> require,
@@ -31,7 +31,7 @@ type Execute = {
 
 type Cleanup = {
 	Connect: (self: any, connection: RBXScriptSignal, callback: (...any) -> ()) -> RBXScriptConnection,
-	Clean: (self: any) -> (),
+	Clean: (self: any) -> boolean,
 	Add: (self: any, object: any) -> Instance,
 	Remove: (self: any, object: any) -> ()
 }
@@ -52,10 +52,9 @@ type Event = {
 }
 
 type Component = {
-	serve: (self: any, name: any) -> Execute,
-	test: (self: any, name: any) -> Execute,
+	extend: (self: any, name: string, test: boolean?) -> Components,
 	createComponent: (self: any) -> require,
-	GetComponent: (self: any, name: string) -> Execute,
+	GetComponent: (self: any, name: string) -> Components,
 	GetComponents: (self: any) -> (),
 	GetRegisteredSignal: (self: any, handler: (name: string, class: {[any]: any}) -> nil) -> nil
 }

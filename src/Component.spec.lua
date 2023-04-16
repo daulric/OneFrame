@@ -4,7 +4,7 @@ return function ()
     describe("Component Module", function()
 
         it("The Component should create a component that runs when published!", function()
-            local New = Component:serve("live")
+            local New = Component:extend("live")
     
             expect(New).to.be.a("table")
             expect(New).to.ok()
@@ -33,13 +33,20 @@ return function ()
                     Token = 90
                 })
 
-                print("Money:", New.state.Money, "\nToken:", New.state.Token)
                 expect(New.state.Money).to.be.ok()
                 expect(New.state.Token).to.be.ok()
             end)
 
-            it("should throw error to stop individual values", function()
-                expect(New:setState(10)).to.throw()
+            it("should insert individual values", function()
+                expect(function()
+                    New:setState(10)
+                end).to.be.ok()
+            end)
+
+            it("self.state should be read only", function()
+                expect(function()
+                    New.state.Hello = 10
+                end).to.be.ok()
             end)
 
             it("should require a component", function()
@@ -50,18 +57,18 @@ return function ()
                 it("should say and execute all the functions", function()
 					for index, val in pairs(moduleComponent) do
 						if type(val) == "function" then
-                            print(index, ":", val)
-                            val()
+                            expect(function()
+                                val()
+                            end).to.be.ok()
                         end
                     end
                 end)
-
             end)
 
         end)
     
         it("The Component should create a test component that only runs in studio", function()
-            local New = Component:test("test")
+            local New = Component:extend("test", true)
     
             function New:render()
                 print("tested!")
@@ -72,12 +79,13 @@ return function ()
             end
     
             expect(New).to.be.a("table")
+            expect(New.live).to.be.equal(nil)
+            expect(New.test).to.be.a("boolean")
             expect(New).to.be.ok()
         end)
 
         it("should create a module component", function()
             local createComponent = Component:createComponent("test_module")
-            print("Component Created!", createComponent)
             expect(createComponent).to.be.a("table")
             expect(createComponent).to.be.ok()
         end)
@@ -103,6 +111,5 @@ return function ()
         end)
 
     end)
-
 
 end

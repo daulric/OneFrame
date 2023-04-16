@@ -14,7 +14,7 @@ local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local compile = require(Utilites.compile)
 
-local mainFunctions = {"init", "closing", "preload", "render", "Cleanup", "Event", "live", "test", "shared", "state", "setState", "require", "name"}
+local mainFunctions = {"init", "closing", "preload", "render", "Cleanup", "Event", "live", "test", "shared", "state", "setState", "require", "name", "state", "setState", "require"}
 
 function render(scripts, Items)
 
@@ -98,7 +98,6 @@ function InitFramework(Folder: Instance, ignorePrint, ...: any)
 			
 			local success, scripts, name = pcall(function()
 				local Data: Framework = require(v)
-				print(Data)
 				return Data, Data.name
 			end)
 
@@ -106,12 +105,12 @@ function InitFramework(Folder: Instance, ignorePrint, ...: any)
 				warn(`required data could not been executed for {name}`)
 			end
 			
-			if scripts.live then
-				Connection(scripts, name, ...)
-			elseif scripts.test then
+			if scripts.test == true then
 				if RunService:IsStudio() then
 					Connection(scripts, name, ...)
 				end
+			else
+				Connection(scripts, name, ...)
 			end
 
 			if not ignorePrint then

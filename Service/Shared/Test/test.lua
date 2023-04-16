@@ -1,13 +1,13 @@
 local RunService = game:GetService("RunService")
 local OneFrame = require(game.ReplicatedStorage.OneFrame)
 
-local New = OneFrame.Component:serve("Hello")
+local New = OneFrame.Component:extend("Hello")
 
 function New:init()
 	self.part = self.Cleanup:Add(Instance.new("Part"))
 	print("Part Name:", self.part.Name)
 	print("initializing")
-	
+
 	self.Event:Listen("idk", function(...)
 		print(...)
 		return ...

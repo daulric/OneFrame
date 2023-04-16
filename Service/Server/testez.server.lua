@@ -6,5 +6,4 @@ local TestLocations = {
 }
 
 local reporter = TestEz.Reporters.TextReporter
-
 TestEz.TestBootstrap:run(TestLocations, reporter)
