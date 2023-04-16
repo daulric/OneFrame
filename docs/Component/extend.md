@@ -9,8 +9,6 @@ local component = OneFrame.Component:extend(
     name: string,
     test: boolean? -- if this is true, it will only run in studio
 )
-
-
 ```
 This will create a new component to be ran in the server/client
 
