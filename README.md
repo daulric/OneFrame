@@ -26,3 +26,4 @@
 - ### **[extend()](/docs/Component/extend.md)**
 - ### **[GetComponent()](/docs/Component/GetComponent.md)**
 - ### **[GetComponents()](/docs/Component/GetComponents.md)**
+- ### **[GetRegisteredSignal()](/docs/Component/GetRegisteredSignal.md)**
