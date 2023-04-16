@@ -16,3 +16,9 @@
 
 # **Method 3: Download Model File From Repo**
 ### Download the OneFrame module [here](/OneFrame.rbxm)
+
+#
+
+# **Documentation**
+### **[Start](/docs/Start.md)** - to run the code on the server / client
+### **[Component](/docs/Component/)** - using in running the code called by **'.Start'**
