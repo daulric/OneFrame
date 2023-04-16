@@ -1,3 +1,10 @@
+<div class = "logo">
+    <p align="center">
+        <img src = "docs/Images/logo.png" style="border-radius:5%" />
+    </p>
+</div>
+
+
 ## **Installing OneFrame**
 #
 
