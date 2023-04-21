@@ -73,7 +73,7 @@ function Connection(scripts: Framework, scriptName, ...: any)
 		name = name..scripts.name
 	else
 		scripts.name = scriptName
-		name = name..scriptName
+		name = scriptName
 	end
 
 	task.spawn(function()
