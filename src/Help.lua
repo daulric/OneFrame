@@ -8,6 +8,7 @@ type ComponentParams = {
 	[string]: any
 }
 
+type start = {[string]: any}
 type state = {[string]: any}
 type setState = (state: state?) -> {[string]: any} | {[string]: any}
 
@@ -61,7 +62,7 @@ type Component = {
 
 export type Framework = {
 	Component: Component,
-	Start: (Instance: Instance, ignorePrint: any, ...any) -> boolean,
+	Start: (Folder: Instance | start, ignorePrint: any, ...any) -> boolean,
 }
 
 return module

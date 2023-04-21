@@ -9,12 +9,9 @@ export type Framework = {
 }
 
 local Utilites = script.Parent:WaitForChild("Utilities")
-local Players = game:GetService("Players")
 
 local RunService = game:GetService("RunService")
 local compile = require(Utilites.compile)
-
-local mainFunctions = {"init", "closing", "preload", "render", "Cleanup", "Event", "live", "test", "shared", "state", "setState", "require", "name", "state", "setState", "require"}
 
 function render(scripts, Items)
 
@@ -29,6 +26,40 @@ function render(scripts, Items)
 			warn(err)
 		end
 
+	end
+end
+
+function preload(scripts, Items)
+	if scripts.preload then
+		local preloadSuccess, err = pcall(function()
+			task.spawn(function()
+				scripts:preload(Items)
+			end)
+		end)
+
+		if preloadSuccess then
+			task.spawn(render, scripts, Items)
+		else
+			warn(err)
+		end
+
+	elseif not scripts.preload then
+		task.spawn(render, scripts, Items)
+	end
+end
+
+function init(scripts, Items)
+	if scripts.init then
+		local initSuccess, err = pcall(function()
+			task.spawn(function()
+				scripts:init(Items)
+			end)
+		end)
+	
+		if not initSuccess then
+			warn(err)
+		end
+	
 	end
 end
 
@@ -47,36 +78,9 @@ function Connection(scripts: Framework, scriptName, ...: any)
 
 	task.spawn(function()
 		-- this is just here to load variables and other stuff
-		if scripts.init then
-			local initSuccess, err = pcall(function()
-				task.spawn(function()
-					scripts:init(Items)
-				end)
-			end)
-
-			if not initSuccess then
-				warn(err)
-			end
-
-		end
-
-		if scripts.preload then
-			local preloadSuccess, err = pcall(function()
-				task.spawn(function()
-					scripts:preload(Items)
-				end)
-			end)
-
-			if preloadSuccess then
-				task.spawn(render, scripts, Items)
-			else
-				warn(err)
-			end
-
-		elseif not scripts.preload then
-			task.spawn(render, scripts, Items)
-		end
-	
+		task.spawn(init, scripts, Items)
+		task.wait()
+		task.spawn(preload, scripts, Items)
 	end)
 
 	if scripts.closing and RunService:IsServer() then
@@ -89,7 +93,7 @@ function Connection(scripts: Framework, scriptName, ...: any)
 
 end
 
-function InitFramework(Folder: Instance, ignorePrint, ...: any)
+function InitFolder(Folder: Instance, ignorePrint, ...: any)
 
 	for i, v in ipairs(Folder:GetChildren()) do
 		local Start = os.clock()
@@ -125,11 +129,34 @@ function InitFramework(Folder: Instance, ignorePrint, ...: any)
 			end
 
 		elseif v:IsA("Instance") then
-			InitFramework(v, ignorePrint, ...)
+			InitFolder(v, ignorePrint, ...)
 		end
 	end
-	
-	return true
+end
+
+function InitTable(Table, ignorePrint, ...)
+	for _, Instances in pairs(Table) do
+		if typeof(Instances) == "Instance" then 
+			InitFolder(Instances, ignorePrint, ...)
+			return
+		end
+
+		if typeof(Instances) == "table" then 
+			InitTable(Instances, ignorePrint, ...)
+		end
+	end
+end
+
+function InitFramework(Folder: Instance | {[any]: any}, ignorePrint, ...: any)
+	if typeof(Folder) == "Instance" then 
+		InitFolder(Folder, ignorePrint, ...)
+		return true
+	end
+
+	if typeof(Folder) == "table" then
+		InitTable(Folder, ignorePrint, ...)
+		return true
+	end
 end
 
 local Compiled = compile({
