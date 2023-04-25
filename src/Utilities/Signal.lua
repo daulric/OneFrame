@@ -1,17 +1,17 @@
-local SignalClass = {}
-SignalClass.__index = SignalClass
+local Signal = {}
+Signal.__index = Signal
 
-function SignalClass.new()
+function Signal.new()
     local Class = {
         _bindable = Instance.new("BindableEvent"),
         _args = nil,
         _argCount = nil
     }
 
-    return setmetatable(Class, SignalClass)
+    return setmetatable(Class, Signal)
 end
 
-function SignalClass:Fire(...)
+function Signal:Fire(...)
     if self._bindable then
         self._args = {...}
         self._argCount = select("#", ...)
@@ -19,7 +19,7 @@ function SignalClass:Fire(...)
     end
 end
 
-function SignalClass:Connect(handler: (...any) -> any)
+function Signal:Connect(handler: (...any) -> any)
     if  self._bindable then
         return self._bindable.Event:Connect(function()
             handler(unpack(self._args, 1, self._argCount))
@@ -27,7 +27,7 @@ function SignalClass:Connect(handler: (...any) -> any)
     end
 end
 
-function SignalClass:Wait()
+function Signal:Wait()
     if self._bindable then
         self._bindable.Event:Wait()
         assert(self._args, "waiting")
@@ -35,7 +35,7 @@ function SignalClass:Wait()
     end
 end
 
-function SignalClass:Destroy()
+function Signal:Destroy()
     if self._bindable then
         self._bindable:Destroy()
         self._bindable = nil
@@ -47,4 +47,4 @@ function SignalClass:Destroy()
     setmetatable(self, nil)
 end
 
-return SignalClass
+return Signal

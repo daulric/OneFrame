@@ -18,62 +18,46 @@ local Event = require(Services.Event)
 
 type RegisterType = "live" | "test" | "shared"
 
-function Register(class: {[any]: any}, name, Type: RegisterType)
-	class.name = name
-	class[Type] = true
+function module:setState(value: any)
+	if not self.state then
+		warn("there is no state to this component")
+		return
+	end
 
-	class.state = {}
-	class.state.isState = true
-	table.freeze(class.state)
+	if not table.isfrozen(self.state) and self.state.isState ~= true then
+		warn("this table was not properly set!")
+		return
+	end
 
-	function class:setState(value: any)
-		if not table.isfrozen(class.state) and class.state.isState ~= true then
-			warn("this table was not properly set!")
-			return
+	local NewClassState = table.clone(self.state)
+
+	if type(value) == "table" then
+		for index, stuff in pairs(value) do
+			NewClassState[tostring(index)] = stuff
 		end
+	elseif type(value) == "function" then
+		local newState = value(NewClassState)
 
-		local NewClassState = table.clone(class.state)
-
-		if type(value) == "table" then
-			for index, stuff in pairs(value) do
+		if type(newState) == "table" then 
+			for index, stuff in pairs(newState) do
 				NewClassState[tostring(index)] = stuff
 			end
-		elseif type(value) == "function" then
-			local newState = value(NewClassState)
-
-			if type(newState) == "table" then 
-				for index, stuff in pairs(newState) do
-					NewClassState[tostring(index)] = stuff
-				end
-			else
-				table.insert(NewClassState, value)
-			end
-		end
-
-		NewClassState.isState = true
-		class.state = NewClassState
-		table.freeze(class.state)
-	end
-
-	function class:require(modulescript: ModuleScript)
-		local module = require(modulescript)
-		if module.shared then
-			local newModule = compile(module)
-			return newModule
+		else
+			table.insert(NewClassState, value)
 		end
 	end
 
-	if name ~= nil then
-		class.name = ""..name
-	end
-	
-	class.Cleanup = Cleany.create()
-	class.Event = Event
+	NewClassState.isState = true
+	self.state = NewClassState
+	table.freeze(self.state)
+end
 
-	if Type ~= "shared" then
-		RegisterSignal:Fire(name)
+function module:require(modulescript: ModuleScript)
+	local module = require(modulescript)
+	if module.shared then
+		local newModule = compile(module)
+		return newModule
 	end
-	
 end
 
 function CheckId(Table: {[string]: any}, name: string)
@@ -82,15 +66,37 @@ function CheckId(Table: {[string]: any}, name: string)
 	end
 end
 
+function Register(class: {[any]: any}, name, Type: RegisterType)
+	class.name = name
+	class[Type] = true
+
+	if name ~= nil then
+		class.name = ""..name
+	end
+
+	RegisterSignal:Fire(name)
+	
+end
+
 function module:extend(name, test)
 	-- this here runs the component once
 	local class = {}
 
 	if CheckId(LiveClass, name) then
-		warn(`{name} already exsist in this table`)
+		warn(`{name} already exsist in execution table`)
 		return class
 	end
 
+	if CheckId(TestClass, name) then
+		warn(`{name} already exsist in test table : TEST TABLE WONT RUN IN GAME`)
+		return class
+	end
+
+	class.state = {}
+	table.freeze(class.state)
+	class.Cleanup = Cleany.create()
+	class.Event = Event
+	
 	if test == true then
 		Register(class, name, "test")
 		TestClass[tostring(name)] = class
@@ -98,6 +104,8 @@ function module:extend(name, test)
 		Register(class, name, "live")
 		LiveClass[tostring(name)] = class
 	end
+
+	setmetatable(class, module)
 
 	return class
 	
@@ -145,8 +153,4 @@ function module:GetRegisteredSignal(handler)
 	RegisterSignal:Connect(handler)
 end
 
-local Component = compile(module)
-
-if Component.Success then
-	return Component
-end
+return module

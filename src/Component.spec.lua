@@ -65,6 +65,16 @@ return function ()
                 end)
             end)
 
+            it("should check to see if state is binded using the extend class", function()
+                
+                expect(function()
+                    Component:setState({
+                        idk = true
+                    })
+                end).to.be.ok()
+               
+            end)
+
         end)
     
         it("The Component should create a test component that only runs in studio", function()
