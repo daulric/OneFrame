@@ -62,7 +62,7 @@ type Component = {
 
 export type Framework = {
 	Component: Component,
-	Start: (Folder: Instance | start?, ignorePrint: any, ...any) -> boolean,
+	Start: (Folder: Instance | start, ignorePrint: any, ...any) -> boolean,
 }
 
 return module
