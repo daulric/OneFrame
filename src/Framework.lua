@@ -163,6 +163,4 @@ local Compiled = compile({
 	Framework = InitFramework
 })
 
-if Compiled.Success then
-	return Compiled.Framework
-end
+return Compiled.Framework

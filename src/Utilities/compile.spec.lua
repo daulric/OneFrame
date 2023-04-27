@@ -10,7 +10,6 @@ return function ()
             })
 
             expect(test).to.be.ok()
-            expect(test.Success).to.be.ok()
         end)
 
         it("should not get any nonexsisting key", function()

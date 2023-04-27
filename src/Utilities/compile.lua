@@ -19,8 +19,6 @@ function compile(data: { [any]: any})
 		})
 	end)
 	
-	data.Success = success
-	
 	if success then
 		return completed
 	else

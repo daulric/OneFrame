@@ -1,5 +1,5 @@
-local module = {}
-module.__index = module
+local Component = {}
+Component.__index = Component
 
 local Utilites = script.Parent:WaitForChild("Utilities")
 local Services = script.Parent:WaitForChild("Services")
@@ -18,7 +18,115 @@ local Event = require(Services.Event)
 
 type RegisterType = "live" | "test" | "shared"
 
-function module:setState(value: any)
+--[=[
+	@class Component
+	
+	This is the component aspect of the module
+]=]
+
+function CheckId(Table: {[string]: any}, name: string)
+	if Table[name] then
+		return true
+	end
+end
+
+function Register(class: {[any]: any}, name, Type: RegisterType)
+	class.name = name
+	class[Type] = true
+
+	if name ~= nil then
+		class.name = ""..name
+	end
+
+	RegisterSignal:Fire(name)
+	
+end
+
+--[=[
+	@within Component
+	@method extend
+	@param name string
+	@param test boolean
+
+	@return table
+
+	This creates the modular code that would be executed
+]=]
+
+function Component:extend(name, test)
+	-- this here runs the component once
+	local class = {}
+
+	if CheckId(LiveClass, name) then
+		warn(`{name} already exsist in execution table`)
+		return class
+	end
+
+	if CheckId(TestClass, name) then
+		warn(`{name} already exsist in test table : TEST TABLE WONT RUN IN GAME`)
+		return class
+	end
+
+	class.state = {}
+	table.freeze(class.state)
+	class.Cleanup = Cleany.create()
+	class.Event = Event
+	
+	if test == true then
+		Register(class, name, "test")
+		TestClass[tostring(name)] = class
+	else
+		Register(class, name, "live")
+		LiveClass[tostring(name)] = class
+	end
+
+	setmetatable(class, Component)
+
+	return class
+	
+end
+
+--[=[
+	This will only work when `Component:extend()` is called and it works using the `self` statement
+	**Example**: 
+	```lua 
+	local Component = OneFrame.Component:extend("Hello")
+
+	function Component:render()
+		self:require(module)
+	end
+
+	return Component
+	```
+
+]=]
+
+function Component:require(modulescript: ModuleScript)
+	local module = require(modulescript)
+	if module.shared then
+		local newModule = compile(module)
+		return newModule
+	end
+end
+
+--[=[
+	This only works when `Component:extend()` is called using the `self` statement
+	```lua
+	local Component = OneFrame.Component:extend("Test")
+
+	function Component:render()
+		self:setState({
+			hello = 0
+		})
+	end
+
+	return Component
+
+	```
+]=]
+
+
+function Component:setState(value: any)
 	if not self.state then
 		warn("there is no state to this component")
 		return
@@ -52,66 +160,9 @@ function module:setState(value: any)
 	table.freeze(self.state)
 end
 
-function module:require(modulescript: ModuleScript)
-	local module = require(modulescript)
-	if module.shared then
-		local newModule = compile(module)
-		return newModule
-	end
-end
+--[=[]=]
 
-function CheckId(Table: {[string]: any}, name: string)
-	if Table[name] then
-		return true
-	end
-end
-
-function Register(class: {[any]: any}, name, Type: RegisterType)
-	class.name = name
-	class[Type] = true
-
-	if name ~= nil then
-		class.name = ""..name
-	end
-
-	RegisterSignal:Fire(name)
-	
-end
-
-function module:extend(name, test)
-	-- this here runs the component once
-	local class = {}
-
-	if CheckId(LiveClass, name) then
-		warn(`{name} already exsist in execution table`)
-		return class
-	end
-
-	if CheckId(TestClass, name) then
-		warn(`{name} already exsist in test table : TEST TABLE WONT RUN IN GAME`)
-		return class
-	end
-
-	class.state = {}
-	table.freeze(class.state)
-	class.Cleanup = Cleany.create()
-	class.Event = Event
-	
-	if test == true then
-		Register(class, name, "test")
-		TestClass[tostring(name)] = class
-	else
-		Register(class, name, "live")
-		LiveClass[tostring(name)] = class
-	end
-
-	setmetatable(class, module)
-
-	return class
-	
-end
-
-function module:createComponent()
+function Component:createComponent()
 	local class = {}
 	class.shared = true
 	class.Cleanup = Cleany.create()
@@ -120,7 +171,11 @@ function module:createComponent()
 	return class
 end
 
-function module:GetComponent(name: string)
+--[=[
+
+]=]
+
+function Component:GetComponent(name: string)
 	if not name then
 		return
 	end
@@ -135,7 +190,11 @@ function module:GetComponent(name: string)
 
 end
 
-function module:GetComponents()
+--[=[
+
+]=]
+
+function Component:GetComponents()
 	local Modules = {
 		Test = TestClass,
 		Live = LiveClass,
@@ -143,14 +202,18 @@ function module:GetComponents()
 
 	local compiled = compile(Modules)
 
-	if compiled.Success then
-		return compiled
-	end
+	return compiled
 	
 end
 
-function module:GetRegisteredSignal(handler)
+--[=[
+	@within Component
+	@method GetRegisteredSignal
+	@param handler (...any)
+]=]
+
+function Component:GetRegisteredSignal(handler)
 	RegisterSignal:Connect(handler)
 end
 
-return module
+return Component	
