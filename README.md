@@ -5,5 +5,3 @@ This module was created to be:
 - Fast
 - Reliable
 - More Organized
-
-Get Started by installing the [OneFrame](/docs/intro) module today
