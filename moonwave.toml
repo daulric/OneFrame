@@ -8,6 +8,7 @@ classOrder = []
 [docusaurus]
 onBrokenLinks = "throw"
 onBrokenMarkdownLinks = "warn"
+favicon = "images/logo.png"
 
 # From git:
 organizationName = "daulric"
@@ -18,7 +19,19 @@ tagline = "Running a modular code under one server/client"
 
 [home]
 enabled = true
-includeReadme = true # Optional
+includeReadme = true
+
+[[home.features]]
+title = "Fast"
+description = "Module run codes very quickly withput having to stop pause for any errors along the way."
+
+[[home.features]]
+title = "Reliable"
+description = "OneFrame offers type support to make the code much easier to handle when developing your projects/games."
+
+[[home.features]]
+title = "Organized"
+description = "Modules are much more organized in folders and avoid clustered scripts all over the game."
 
 [footer]
 style = "dark"

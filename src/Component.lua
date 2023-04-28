@@ -24,6 +24,17 @@ type RegisterType = "live" | "test" | "shared"
 	This is the component aspect of the module
 ]=]
 
+-- Interface Properties
+--[=[
+	@interface self
+	@within Component
+	.state {[any]: any} -- returns items that was set using `:setState`
+	.Cleanup Cleanup
+	.Event Event
+
+	this will return once `:extend` is called
+]=]
+
 function CheckId(Table: {[string]: any}, name: string)
 	if Table[name] then
 		return true
@@ -43,17 +54,10 @@ function Register(class: {[any]: any}, name, Type: RegisterType)
 end
 
 --[=[
-	@within Component
-	@method extend
-	@param name string
-	@param test boolean
-
-	@return table
-
-	This creates the modular code that would be executed
+	
 ]=]
 
-function Component:extend(name, test)
+function Component:extend(name: any, test: boolean)
 	-- this here runs the component once
 	local class = {}
 
@@ -216,4 +220,4 @@ function Component:GetRegisteredSignal(handler)
 	RegisterSignal:Connect(handler)
 end
 
-return Component	
+return Component
