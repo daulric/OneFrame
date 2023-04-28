@@ -6,6 +6,8 @@ changelog = true
 classOrder = []
 
 [docusaurus]
+url = "https://daulric.github.io"
+baseUrl = "/OneFrame"
 onBrokenLinks = "throw"
 onBrokenMarkdownLinks = "warn"
 favicon = "images/logo.png"
@@ -13,8 +15,6 @@ favicon = "images/logo.png"
 # From git:
 organizationName = "daulric"
 projectName = "OneFrame"
-url = "https://daulric.github.io"
-baseUrl = "/OneFrame"
 tagline = "Running a modular code under one server/client"
 
 [home]
