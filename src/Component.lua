@@ -18,22 +18,6 @@ local Event = require(Services.Event)
 
 type RegisterType = "live" | "test" | "shared"
 
---[=[
-	@class Component
-	
-	This is the component aspect of the module
-]=]
-
--- Interface Properties
---[=[
-	@interface self
-	@within Component
-	.state {[any]: any} -- returns items that was set using `:setState`
-	.Cleanup Cleanup
-	.Event Event
-
-	this will return once `:extend` is called
-]=]
 
 function CheckId(Table: {[string]: any}, name: string)
 	if Table[name] then
@@ -52,10 +36,6 @@ function Register(class: {[any]: any}, name, Type: RegisterType)
 	RegisterSignal:Fire(name)
 	
 end
-
---[=[
-	
-]=]
 
 function Component:extend(name: any, test: boolean)
 	-- this here runs the component once
@@ -90,21 +70,6 @@ function Component:extend(name: any, test: boolean)
 	
 end
 
---[=[
-	This will only work when `Component:extend()` is called and it works using the `self` statement
-	**Example**: 
-	```lua 
-	local Component = OneFrame.Component:extend("Hello")
-
-	function Component:render()
-		self:require(module)
-	end
-
-	return Component
-	```
-
-]=]
-
 function Component:require(modulescript: ModuleScript)
 	local module = require(modulescript)
 	if module.shared then
@@ -112,23 +77,6 @@ function Component:require(modulescript: ModuleScript)
 		return newModule
 	end
 end
-
---[=[
-	This only works when `Component:extend()` is called using the `self` statement
-	```lua
-	local Component = OneFrame.Component:extend("Test")
-
-	function Component:render()
-		self:setState({
-			hello = 0
-		})
-	end
-
-	return Component
-
-	```
-]=]
-
 
 function Component:setState(value: any)
 	if not self.state then
@@ -164,8 +112,6 @@ function Component:setState(value: any)
 	table.freeze(self.state)
 end
 
---[=[]=]
-
 function Component:createComponent()
 	local class = {}
 	class.shared = true
@@ -174,10 +120,6 @@ function Component:createComponent()
 
 	return class
 end
-
---[=[
-
-]=]
 
 function Component:GetComponent(name: string)
 	if not name then
@@ -194,10 +136,6 @@ function Component:GetComponent(name: string)
 
 end
 
---[=[
-
-]=]
-
 function Component:GetComponents()
 	local Modules = {
 		Test = TestClass,
@@ -209,12 +147,6 @@ function Component:GetComponents()
 	return compiled
 	
 end
-
---[=[
-	@within Component
-	@method GetRegisteredSignal
-	@param handler (...any)
-]=]
 
 function Component:GetRegisteredSignal(handler)
 	RegisterSignal:Connect(handler)
