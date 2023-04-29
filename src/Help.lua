@@ -53,7 +53,7 @@ type Event = {
 }
 
 type Component = {
-	extend: (self: any, name: string, test: boolean?) -> Components,
+	extend: (self: any, name: string, values: {[any]: any}) -> Components,
 	createComponent: (self: any) -> require,
 	GetComponent: (self: any, name: string) -> Components,
 	GetComponents: (self: any) -> (),

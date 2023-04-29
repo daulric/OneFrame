@@ -4,8 +4,9 @@ return function ()
     describe("Component Module", function()
 
         it("The Component should create a component that runs when published!", function()
+
             local New = Component:extend("live")
-    
+
             expect(New).to.be.a("table")
             expect(New).to.ok()
 
@@ -75,23 +76,6 @@ return function ()
                
             end)
 
-        end)
-    
-        it("The Component should create a test component that only runs in studio", function()
-            local New = Component:extend("test", true)
-    
-            function New:render()
-                print("tested!")
-            end
-    
-            function New:preload()
-                print("preloading test")
-            end
-    
-            expect(New).to.be.a("table")
-            expect(New.live).to.be.equal(nil)
-            expect(New.test).to.be.a("boolean")
-            expect(New).to.be.ok()
         end)
 
         it("should create a module component", function()

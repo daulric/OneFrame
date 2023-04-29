@@ -25,19 +25,7 @@ function CheckId(Table: {[string]: any}, name: string)
 	end
 end
 
-function Register(class: {[any]: any}, name, Type: RegisterType)
-	class.name = name
-	class[Type] = true
-
-	if name ~= nil then
-		class.name = ""..name
-	end
-
-	RegisterSignal:Fire(name)
-	
-end
-
-function Component:extend(name: any, test: boolean)
+function Component:extend(name: any)
 	-- this here runs the component once
 	local class = {}
 
@@ -55,14 +43,12 @@ function Component:extend(name: any, test: boolean)
 	table.freeze(class.state)
 	class.Cleanup = Cleany.create()
 	class.Event = Event
-	
-	if test == true then
-		Register(class, name, "test")
-		TestClass[tostring(name)] = class
-	else
-		Register(class, name, "live")
-		LiveClass[tostring(name)] = class
-	end
+	class.live = true
+	class.name = tostring(name)
+
+	RegisterSignal:Fire(name)
+
+	LiveClass[tostring(name)] = class
 
 	setmetatable(class, Component)
 
