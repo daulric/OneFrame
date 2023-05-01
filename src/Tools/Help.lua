@@ -19,10 +19,9 @@ type require = {
 	[string]: any
 }
 
-type Components = {
+export type Components = {
 	state: state,
 	setState: (self: any, state: setState) -> (),
-	require: (self: any, module: ModuleScript) -> require,
 	init: (self: ComponentParams, ...any?) -> (),
 	preload: (self: ComponentParams, ...any?) -> (),
 	render: (self: ComponentParams, ...any?) -> (),

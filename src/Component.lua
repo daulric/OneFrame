@@ -3,6 +3,9 @@ Component.__index = Component
 
 local Utilites = script.Parent:WaitForChild("Utilities")
 local Services = script.Parent:WaitForChild("Services")
+local Tools = script.Parent:WaitForChild("Tools")
+
+local Help = require(Tools.Help)
 
 local Signal = require(Utilites.Signal)
 
@@ -24,7 +27,7 @@ function CheckId(Table: {[string]: any}, name: string)
 	end
 end
 
-function Component:extend(name: any)
+function Component:extend(name: any) : Help.Components
 	-- this here runs the component once
 	local class = {}
 
