@@ -1,9 +1,11 @@
 local OneFrame = require(game.ReplicatedStorage.OneFrame)
 local Controllers = OneFrame.Controllers
+local Signal = require(OneFrame.Utils:WaitForChild("Signal"))
 
 local Test = Controllers.CreateController({
     Name = "test",
-    Diamond = 10
+    Diamond = 10,
+    event = Signal.new()
 })
 
 function Test:Get()

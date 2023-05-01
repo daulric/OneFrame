@@ -50,22 +50,6 @@ return function ()
                 end).to.be.ok()
             end)
 
-            it("should require a component", function()
-                local moduleComponent = New:require(script.Parent.Parent:WaitForChild("component_require"))
-                expect(moduleComponent).to.be.a("table")
-                expect(moduleComponent).to.be.ok()
-
-                it("should say and execute all the functions", function()
-					for index, val in pairs(moduleComponent) do
-						if type(val) == "function" then
-                            expect(function()
-                                val()
-                            end).to.be.ok()
-                        end
-                    end
-                end)
-            end)
-
             it("should check to see if state is binded using the extend class", function()
                 
                 expect(function()
@@ -76,12 +60,6 @@ return function ()
                
             end)
 
-        end)
-
-        it("should create a module component", function()
-            local createComponent = Component:createComponent("test_module")
-            expect(createComponent).to.be.a("table")
-            expect(createComponent).to.be.ok()
         end)
 
         it("return all components", function()

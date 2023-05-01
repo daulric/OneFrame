@@ -1,14 +1,17 @@
 local Utilities = script:WaitForChild("Utilities")
-local compile = require(Utilities.compile)
-local Help = require(script:WaitForChild("Help"))
+local Tools = script:WaitForChild("Tools")
+
+local compile = require(Tools.compile)
+local Help = require(Tools.Help)
 
 local Framework = require(script:WaitForChild("Framework"))
 local Controllers = require(script:WaitForChild("Controllers"))
 
-local OneFrame: Help.Framework = compile({
+local OneFrame = {
 	Component = require(script:WaitForChild("Component")),
 	Start = Framework,
-	Controllers = Controllers
-})
+	Controllers = Controllers,
+	Utils = Utilities
+}
 
 return OneFrame

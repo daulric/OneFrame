@@ -3,9 +3,6 @@ local Controllers = {}
 --Controllers.__index = Controllers
 
 local Hub = {}
-local Utils = script.Parent:WaitForChild("Utilities")
-
-Controllers.Utils = Utils
 
 type CreateController = {Name: string, [any]: any}
 

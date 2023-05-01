@@ -12,7 +12,6 @@ local RegisterSignal = Signal.new()
 local LiveClass = {}
 local TestClass = {}
 
-local compile = require(Utilites.compile)
 local Cleany = require(Utilites.Cleany)
 local Event = require(Services.Event)
 
@@ -56,14 +55,6 @@ function Component:extend(name: any)
 	
 end
 
-function Component:require(modulescript: ModuleScript)
-	local module = require(modulescript)
-	if module.shared then
-		local newModule = compile(module)
-		return newModule
-	end
-end
-
 function Component:setState(value: any)
 	if not self.state then
 		warn("there is no state to this component")
@@ -98,15 +89,6 @@ function Component:setState(value: any)
 	table.freeze(self.state)
 end
 
-function Component:createComponent()
-	local class = {}
-	class.shared = true
-	class.Cleanup = Cleany.create()
-	class.Event = Event
-
-	return class
-end
-
 function Component:GetComponent(name: string)
 	if not name then
 		return
@@ -128,7 +110,7 @@ function Component:GetComponents()
 		Live = LiveClass,
 	}
 
-	local compiled = compile(Modules)
+	local compiled = table.freeze(table.clone(Modules))
 
 	return compiled
 	

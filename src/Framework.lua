@@ -9,9 +9,10 @@ export type Framework = {
 }
 
 local Utilites = script.Parent:WaitForChild("Utilities")
+local Tools = script.Parent:WaitForChild("Tools")
 
 local RunService = game:GetService("RunService")
-local compile = require(Utilites.compile)
+local compile = require(Tools.compile)
 
 function render(scripts, Items)
 
@@ -148,7 +149,7 @@ function InitTable(Table, ignorePrint, ...)
 	end
 end
 
-function InitFramework(Folder: Instance | {[any]: any}, ignorePrint, ...: any)
+function Framework(Folder: Instance | {[any]: any}, ignorePrint, ...: any)
 	if typeof(Folder) == "Instance" then 
 		InitFolder(Folder, ignorePrint, ...)
 		return true
@@ -160,8 +161,4 @@ function InitFramework(Folder: Instance | {[any]: any}, ignorePrint, ...: any)
 	end
 end
 
-local Compiled = compile({
-	Framework = InitFramework
-})
-
-return Compiled.Framework
+return Framework

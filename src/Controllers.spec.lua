@@ -9,6 +9,7 @@ return function ()
 
         it("should get a controller", function()
             local controller = Controllers.GetController("test")
+            print(controller)
             expect(controller).to.be.a("table")
             expect(controller:Get()).to.be.ok()
         end)
