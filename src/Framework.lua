@@ -93,43 +93,44 @@ function Connection(scripts: Framework, scriptName, ...: any)
 
 end
 
+function makeAjustment(v, ignorePrint, Start, ...)
+	local success, scripts, name = pcall(function()
+		local Data: Framework = require(v)
+		return Data, Data.name
+	end)
+
+	if not success then
+		warn(`required data could not been executed for {name}`)
+		return
+	end
+	
+	if scripts.test == true then
+		if RunService:IsStudio() then
+			Connection(scripts, name, ...)
+		end
+	else
+		Connection(scripts, name, ...)
+	end
+
+	if not ignorePrint then
+		local End = math.ceil(os.clock() - Start)
+		local message = `{name} : Took {End} ms`
+
+		if RunService:IsClient() then
+			print(`Client // {message}`)
+		elseif RunService:IsServer() then
+			print(`Server // {message}`)
+		end
+	end
+end
+
 function InitFolder(Folder: Instance, ignorePrint, ...: any)
 
-	for i, v in ipairs(Folder:GetChildren()) do
+	for i, v in ipairs(Folder:GetDescendants()) do
 		local Start = os.clock()
 
 		if v:IsA("ModuleScript") then
-			
-			local success, scripts, name = pcall(function()
-				local Data: Framework = require(v)
-				return Data, Data.name
-			end)
-
-			if not success then
-				warn(`required data could not been executed for {name}`)
-			end
-			
-			if scripts.test == true then
-				if RunService:IsStudio() then
-					Connection(scripts, name, ...)
-				end
-			else
-				Connection(scripts, name, ...)
-			end
-
-			if not ignorePrint then
-				local End = math.ceil(os.clock() - Start)
-				local message = `{name} : Took {End} ms`
-
-				if RunService:IsClient() then
-					print(`Client // {message}`)
-				elseif RunService:IsServer() then
-					print(`Server // {message}`)
-				end
-			end
-
-		elseif v:IsA("Instance") then
-			InitFolder(v, ignorePrint, ...)
+			task.spawn(makeAjustment, v, ignorePrint, Start, ...)
 		end
 	end
 end
