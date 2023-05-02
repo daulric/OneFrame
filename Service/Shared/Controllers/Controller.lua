@@ -4,7 +4,10 @@ local Signal = require(OneFrame.Utils:WaitForChild("Signal"))
 
 local Test = Controllers.CreateController({
     Name = "test",
-    Diamond = 10,
+    Diamond = 1000,
+    Gold = 10,
+    Silver = 100,
+    Emerald = 1,
     event = Signal.new()
 })
 

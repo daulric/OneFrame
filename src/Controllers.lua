@@ -4,7 +4,7 @@ local Controllers = {}
 
 local Hub = {}
 
-type CreateController = {Name: string, [any]: any}
+type Controller = {Name: string, [any]: any}
 
 function Controllers.AddController(path: Instance)
     local controllers = {}
@@ -23,7 +23,7 @@ function Controllers.AddController(path: Instance)
     return controllers
 end
 
-function Controllers.GetController(name: string)
+function Controllers.GetController(name: string) : Controller
     local data = Hub[name]
 
     if data then
@@ -35,7 +35,7 @@ function Controllers.GetController(name: string)
 
 end
 
-function Controllers.CreateController(index: CreateController)
+function Controllers.CreateController(index: Controller)
     assert(type(index) == "table", `this should be a table format: we got a {type(index)}`)
     assert(type(index.Name) =="string", `this should be a string: we got a {type(index.Name)}`)
     assert(Hub[index.Name] == nil, `this name already existes! {index.Name}`)

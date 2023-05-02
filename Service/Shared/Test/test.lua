@@ -4,10 +4,11 @@ local OneFrame = require(game.ReplicatedStorage.OneFrame)
 local New = OneFrame.Component:extend("Hello")
 
 function New:init()
+	
 	self.part = self.Cleanup:Add(Instance.new("Part"))
 	print("Part Name:", self.part.Name)
 	print("initializing")
-
+	
 	self.Event:Listen("idk", function(...)
 		print(...)
 		return ...
@@ -17,6 +18,7 @@ function New:init()
 end
 
 function New:preload()
+	
 	self.Cleanup:Connect(workspace.ChildAdded, function(child)
 		print("cleaning connection working: child added to workspace", child)
 	end)

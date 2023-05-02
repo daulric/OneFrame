@@ -19,7 +19,7 @@ type require = {
 	[string]: any
 }
 
-export type Components = {
+export type Component = {
 	state: state,
 	setState: (self: any, state: setState) -> (),
 	init: (self: ComponentParams, ...any?) -> (),
@@ -51,16 +51,15 @@ type Event = {
 	},
 }
 
-type Component = {
-	extend: (self: any, name: string, values: {[any]: any}) -> Components,
-	createComponent: (self: any) -> require,
-	GetComponent: (self: any, name: string) -> Components,
+type ComponentFunc = {
+	extend: (self: any, name: string, values: {[any]: any}) -> Component,
+	GetComponent: (self: any, name: string) -> Component,
 	GetComponents: (self: any) -> (),
 	GetRegisteredSignal: (self: any, handler: (name: string, class: {[any]: any}) -> nil) -> nil
 }
 
 export type Framework = {
-	Component: Component,
+	Component: ComponentFunc,
 	Start: (Folder: Instance | start, ignorePrint: any, ...any) -> boolean,
 }
 

@@ -27,8 +27,8 @@ function CheckId(Table: {[string]: any}, name: string)
 	end
 end
 
-function Component:extend(name: any) : Help.Components
-	-- this here runs the component once
+function Component:extend(name: string, test: boolean?): Help.Component
+
 	local class = {}
 
 	if CheckId(LiveClass, name) then
@@ -43,17 +43,21 @@ function Component:extend(name: any) : Help.Components
 
 	class.state = {}
 	table.freeze(class.state)
+
 	class.Cleanup = Cleany.create()
 	class.Event = Event
-	class.live = true
 	class.name = tostring(name)
 
-	RegisterSignal:Fire(name)
-
-	LiveClass[tostring(name)] = class
+	if test then
+		class.live = true
+		TestClass[tostring(name)] = class
+	else
+		class.test = true
+		LiveClass[tostring(name)] = class
+	end
 
 	setmetatable(class, Component)
-
+	RegisterSignal:Fire(name)
 	return class
 	
 end

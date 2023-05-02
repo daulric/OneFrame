@@ -64,8 +64,19 @@ function init(scripts, Items)
 	end
 end
 
+function messageInfo(ignorePrint, message)
+	if not ignorePrint then
+		if RunService:IsClient() then
+			print(`Client // {message}`)
+		elseif RunService:IsServer() then
+			print(`Server // {message}`)
+		end
+	end
+end
+
 function Connection(scripts: Framework, scriptName, ...: any)
-	task.wait()
+	local Start = os.clock()
+
 	local Items = table.unpack({...})
 	
 	local name = ""
@@ -92,12 +103,20 @@ function Connection(scripts: Framework, scriptName, ...: any)
 		end)
 	end
 
+	local End = math.ceil(os.clock() - Start)
+
+	return `{name} : Took {End} ms`
+
 end
 
-function makeAjustment(v, ignorePrint, Start, ...)
+function MakeAjustment(v, ignorePrint, Start, ...)
 	local success, scripts, name = pcall(function()
 		local Data: Framework = require(v)
-		return Data, Data.name
+
+		if Data.live or Data.test then
+			return Data, Data.name
+		end
+		
 	end)
 
 	if not success then
@@ -107,22 +126,14 @@ function makeAjustment(v, ignorePrint, Start, ...)
 	
 	if scripts.test == true then
 		if RunService:IsStudio() then
-			Connection(scripts, name, ...)
+			local message = Connection(scripts, name, ...)
+			messageInfo(ignorePrint, message)
 		end
-	else
-		Connection(scripts, name, ...)
+	elseif scripts.live then
+		local message = Connection(scripts, name, ...)
+		messageInfo(ignorePrint, message)
 	end
 
-	if not ignorePrint then
-		local End = math.ceil(os.clock() - Start)
-		local message = `{name} : Took {End} ms`
-
-		if RunService:IsClient() then
-			print(`Client // {message}`)
-		elseif RunService:IsServer() then
-			print(`Server // {message}`)
-		end
-	end
 end
 
 function InitFolder(Folder: Instance, ignorePrint, ...: any)
@@ -131,7 +142,7 @@ function InitFolder(Folder: Instance, ignorePrint, ...: any)
 		local Start = os.clock()
 
 		if v:IsA("ModuleScript") then
-			task.spawn(makeAjustment, v, ignorePrint, Start, ...)
+			task.spawn(MakeAjustment, v, ignorePrint, Start, ...)
 		end
 	end
 end

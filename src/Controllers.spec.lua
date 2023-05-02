@@ -9,9 +9,17 @@ return function ()
 
         it("should get a controller", function()
             local controller = Controllers.GetController("test")
-            print(controller)
-            expect(controller).to.be.a("table")
+
+            local connection = controller.event:Connect(function(...)
+                print(...)
+            end)
+
+            task.wait(3)
+            controller.event:Fire("Hello", "Test", "Function")
+
+            expect(connection).to.be.ok()
             expect(controller:Get()).to.be.ok()
+            expect(controller).to.be.a("table")
         end)
     end)
 end
