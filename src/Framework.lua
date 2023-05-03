@@ -39,7 +39,7 @@ function preload(scripts, Items)
 		end)
 
 		if preloadSuccess then
-			task.spawn(render, scripts, Items)
+			render(scripts, Items)
 		else
 			warn(err)
 		end
@@ -112,11 +112,7 @@ end
 function MakeAjustment(v, ignorePrint, Start, ...)
 	local success, scripts, name = pcall(function()
 		local Data: Framework = require(v)
-
-		if Data.live or Data.test then
-			return Data, Data.name
-		end
-		
+		return Data, Data.name
 	end)
 
 	if not success then
