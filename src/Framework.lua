@@ -45,7 +45,7 @@ function preload(scripts, Items)
 		end
 
 	elseif not scripts.preload then
-		task.spawn(render, scripts, Items)
+		render(scripts, Items)
 	end
 end
 
@@ -90,9 +90,9 @@ function Connection(scripts: Framework, scriptName, ...: any)
 
 	task.spawn(function()
 		-- this is just here to load variables and other stuff
-		task.spawn(init, scripts, Items)
+		init(scripts, Items)
 		task.wait()
-		task.spawn(preload, scripts, Items)
+		preload(scripts, Items)
 	end)
 
 	if scripts.closing and RunService:IsServer() then
@@ -109,7 +109,7 @@ function Connection(scripts: Framework, scriptName, ...: any)
 
 end
 
-function MakeAjustment(v, ignorePrint, Start, ...)
+function MakeAjustment(v, ignorePrint, ...)
 	local success, scripts, name = pcall(function()
 		local Data: Framework = require(v)
 		return Data, Data.name
@@ -138,7 +138,7 @@ function InitFolder(Folder: Instance, ignorePrint, ...: any)
 		local Start = os.clock()
 
 		if v:IsA("ModuleScript") then
-			task.spawn(MakeAjustment, v, ignorePrint, Start, ...)
+			task.spawn(MakeAjustment, v, ignorePrint, ...)
 		end
 	end
 end

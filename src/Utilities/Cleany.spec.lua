@@ -4,27 +4,32 @@ return function ()
     local RunService = game:GetService("RunService")
 
     describe("it should clean modules", function()
-        local Cleanup
+        local Cleanup  = Cleany.create()
         local Object = Instance.new("Part")
-        local Connection
 
-        it("should create a new clean up module", function()
-            Cleanup = Cleany.create()
-            expect(Cleanup).to.be.a("table")
-            expect(Cleanup).to.be.ok()
-        end)
+        expect(Cleanup).to.be.ok()
 
         it("should add connections to the clean up table", function()
-            expect(function()
-                Connection = Cleanup:Connect(Players.ChildAdded, function(child)
-                    print("child added:", child)
-                end)
+            local Connection = Cleanup:Connect(Players.ChildAdded, function(child)
+                print("child added:", child)
+            end)
 
-                Cleanup:Connect(Players.ChildRemoved, function(child)
-                    print("child removed:", child)
-                end)
+            local Connection2 = Cleanup:Connect(Players.ChildRemoved, function(child)
+                print("child removed:", child)
+            end)
 
-            end).to.be.ok()
+            expect(Connection).to.be.ok()
+            expect(Connection2).to.be.ok()
+
+        end)
+
+        it("should run corotines", function()
+            local coro = Cleanup:Add(coroutine.create(function()
+                print("hello corotine working")
+            end))
+
+            coroutine.resume(coro)
+            expect(coro).to.be.ok()
         end)
 
         it("should add objects", function()
@@ -34,17 +39,18 @@ return function ()
             expect(added).to.be.ok()
         end)
 
+        it("should add multiple objects", function()
+            local added = Cleanup:AddMultiple(Instance.new("RemoteEvent"), Instance.new("Part"))
+            print("items:", added)
+            expect(added).to.be.a("table")
+        end)
+
         it("should remove objects", function()
-            expect(function()
-                Cleanup:Remove(Object)
-                Cleanup:Remove(Connection)
-            end).to.be.ok()
+            expect(Cleanup:Remove(Object)).to.never.be.ok()
         end)
 
         it("should clean itself", function()
-            expect(function()
-                Cleanup:Clean()
-            end).to.be.ok()
+            expect(Cleanup:Clean()).to.be.ok()
         end)
 
     end)

@@ -12,13 +12,6 @@ type start = {[string]: any}
 type state = {[string]: any}
 type setState = (state: state?) -> {[string]: any} | {[string]: any}
 
-type require = {
-	init: (self: any, ...any?) -> (),
-	preload: (self: any, ...any?) -> (),
-	render: (self: any, ...any?) -> (),
-	[string]: any
-}
-
 export type Component = {
 	state: state,
 	setState: (self: any, state: setState) -> (),
@@ -56,11 +49,6 @@ type ComponentFunc = {
 	GetComponent: (self: any, name: string) -> Component,
 	GetComponents: (self: any) -> (),
 	GetRegisteredSignal: (self: any, handler: (name: string, class: {[any]: any}) -> nil) -> nil
-}
-
-export type Framework = {
-	Component: ComponentFunc,
-	Start: (Folder: Instance | start, ignorePrint: any, ...any) -> boolean,
 }
 
 return module

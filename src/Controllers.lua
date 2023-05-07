@@ -1,8 +1,9 @@
-local PathfindingService = game:GetService("PathfindingService")
 local Controllers = {}
 --Controllers.__index = Controllers
 
 local Hub = {}
+local Tools = script.Parent:WaitForChild("Tools")
+local compile = require(Tools:WaitForChild("compile"))
 
 type Controller = {Name: string, [any]: any}
 
@@ -37,12 +38,18 @@ end
 
 function Controllers.CreateController(index: Controller)
     assert(type(index) == "table", `this should be a table format: we got a {type(index)}`)
+    assert(index.Name ~= nil, "There is no name here!")
     assert(type(index.Name) =="string", `this should be a string: we got a {type(index.Name)}`)
     assert(Hub[index.Name] == nil, `this name already existes! {index.Name}`)
 
     Hub[index.Name] = index
 
     return index
+end
+
+function Controllers:GetHub()
+    local cloned = table.clone(Hub)
+    return table.freeze(cloned)
 end
 
 return Controllers

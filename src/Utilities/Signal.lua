@@ -20,7 +20,7 @@ function Signal:Fire(...)
 end
 
 function Signal:Connect(handler: (...any) -> any)
-    if  self._bindable then
+    if self._bindable then
         return self._bindable.Event:Connect(function()
             handler(unpack(self._args, 1, self._argCount))
         end)
