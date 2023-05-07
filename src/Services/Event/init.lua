@@ -26,10 +26,7 @@ end
 function Event.Send(id: string)
     local SendType = {}
 
-    if not id and type(id) ~= "string" then
-        warn("this is not a valid data format", id)
-        return
-    end
+    assert(type(id) == "string", `this is not a string; we got a {type(id)}`)
 
     function SendType:Server(...: any)
         RemoteEvent:FireServer(id, ...)
@@ -54,10 +51,7 @@ end
 function Event.Get(id: string)
     local SendType = {}
 
-    if not id and type(id) ~= "string" then
-        warn("this is not a valid data format", id)
-        return
-    end
+    assert(type(id) == "string", `this is not a string; we got a {type(id)}`)
 
     function SendType:Server(...: any)
         return RemoteFunction:InvokeServer(id, ...)
