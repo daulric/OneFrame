@@ -10,6 +10,8 @@ export type Framework = {
 
 local Utilites = script.Parent:WaitForChild("Utilities")
 local Tools = script.Parent:WaitForChild("Tools")
+local Packages = script.Parent.Parent
+local Promise = require(Packages:WaitForChild("Promise"))
 
 local RunService = game:GetService("RunService")
 local compile = require(Tools.compile)
@@ -157,15 +159,18 @@ function InitTable(Table, ignorePrint, ...)
 end
 
 function Framework(Folder: Instance | {[any]: any}, ignorePrint, ...: any)
+	
+	local Success = Promise.new(function(resolve, reject)
+		resolve()
+	end)
+
 	if typeof(Folder) == "Instance" then 
 		InitFolder(Folder, ignorePrint, ...)
-		return true
+	elseif typeof(Folder) == "table" then
+		InitTable(Folder, ignorePrint, ...)
 	end
 
-	if typeof(Folder) == "table" then
-		InitTable(Folder, ignorePrint, ...)
-		return true
-	end
+	return Success
 end
 
 return Framework

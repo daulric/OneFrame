@@ -7,7 +7,10 @@ return function ()
         it("Components Should Run", function()
             local Start = Framework(testFolder)
 
-            expect(Start).to.be.a("boolean")
+            Start:andThen(function()
+                print("started server!")
+            end)
+
             expect(Start).to.be.ok() 
         end)
 

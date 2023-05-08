@@ -4,5 +4,10 @@ registry = "test"
 
 [[package]]
 name = "daulric/oneframe"
-version = "0.6.5"
+version = "0.7.0"
+dependencies = [["Promise", "evaera/promise@4.0.0"]]
+
+[[package]]
+name = "evaera/promise"
+version = "4.0.0"
 dependencies = []

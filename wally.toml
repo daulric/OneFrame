@@ -1,8 +1,9 @@
 [package]
 name = "daulric/oneframe"
 description = "A module used to run folders or objects with modular code inside one single server or client"
-version = "0.6.56"
+version = "0.7.0"
 registry = "https://github.com/UpliftGames/wally-index"
 realm = "shared"
 
 [dependencies]
+Promise = "evaera/promise@4.0.0"
