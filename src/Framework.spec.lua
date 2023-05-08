@@ -3,7 +3,7 @@ return function ()
 
     describe("Framework Component", function()
 
-        it("Components Should Run", function()
+        it("Components Should Run from folder", function()
             local testFolder = game:GetService("ReplicatedStorage"):WaitForChild("Test")
             local Start = Framework(testFolder)
 

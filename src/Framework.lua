@@ -6,7 +6,7 @@ export type Framework = {
 	live: boolean,
 	test: boolean,
 	name: string
-}
+} | (...any) -> ()
 
 local Packages = script.Parent:WaitForChild("Packages")
 
@@ -14,14 +14,12 @@ local Promise = require(Packages:WaitForChild("Promise"))
 
 local RunService = game:GetService("RunService")
 
-function render(scripts, Items)
+function render(scripts, ...)
 
 	if scripts.render then
-		local renderSuccess, err = pcall(function()
-			task.spawn(function()
-				scripts:render(Items)
-			end)
-		end)
+		local renderSuccess, err = pcall(function(...)
+			task.spawn(scripts.render, scripts, ...)
+		end, ...)
 
 		if not renderSuccess then
 			warn(err)
@@ -30,32 +28,28 @@ function render(scripts, Items)
 	end
 end
 
-function preload(scripts, Items)
+function preload(scripts, ...)
 	if scripts.preload then
-		local preloadSuccess, err = pcall(function()
-			task.spawn(function()
-				scripts:preload(Items)
-			end)
-		end)
+		local preloadSuccess, err = pcall(function(...)
+			task.spawn(scripts.preload, scripts, ...)
+		end, ...)
 
 		if preloadSuccess then
-			render(scripts, Items)
+			render(scripts, ...)
 		else
 			warn(err)
 		end
 
 	elseif not scripts.preload then
-		render(scripts, Items)
+		render(scripts, ...)
 	end
 end
 
-function init(scripts, Items)
+function init(scripts, ...)
 	if scripts.init then
-		local initSuccess, err = pcall(function()
-			task.spawn(function()
-				scripts:init(Items)
-			end)
-		end)
+		local initSuccess, err = pcall(function(...)
+			task.spawn(scripts.init, scripts, ...)
+		end, ...)
 	
 		if not initSuccess then
 			warn(err)
@@ -76,53 +70,77 @@ end
 
 function Connection(scripts: Framework, scriptName, ...: any)
 	local Start = os.clock()
-
-	local Items = table.unpack({...})
 	
 	local name = ""
 
-	if scripts.name ~= nil and scripts.name ~= "" then
-		name = name..scripts.name
-	else
-		scripts.name = scriptName
-		name = scriptName
-	end
+	assert(type(scripts) == "table" or type(scripts) == "function", `this is not a table or a function; we got a {type(scripts)}`)
 
-	task.spawn(function()
-		-- this is just here to load variables and other stuff
-		init(scripts, Items)
-		task.wait()
-		preload(scripts, Items)
-	end)
+	if typeof(scripts) == "table" then
 
-	if scripts.closing and RunService:IsServer() then
-		game:BindToClose(function()
-			task.spawn(function()
-				scripts:closing(Items)
+		if scripts.name ~= nil and scripts.name ~= "" then
+			name = name..scripts.name
+		else
+			scripts.name = scriptName
+			name = scriptName
+		end
+	
+		task.spawn(function(...)
+			-- this is just here to load variables and other stuff
+			init(scripts, ...)
+			task.wait()
+			preload(scripts, ...)
+		end, ...)
+	
+		if scripts.closing and RunService:IsServer() then
+			game:BindToClose(function()
+				task.spawn(scripts.closing, scripts)
 			end)
-		end)
+		end
 	end
 
-	local End = math.ceil(os.clock() - Start)
+	if typeof(scripts) == "function" then
+		name = scriptName
+		task.spawn(scripts, ...)
+	end
+
+	local End = os.clock() - Start
 
 	return `{name} : Took {End} ms`
 
 end
 
 function MakeAjustment(v, ignorePrint, ...)
-	local success, scripts, name = pcall(function()
-		local Data: Framework = require(v)
-		return Data, Data.name
+
+	local success, scripts: Framework, name = pcall(function()
+		local Data = require(v)
+
+		if type(Data) == "table" then
+			return Data, Data.name
+		end
+
+		if type(Data) == "function" then
+			return Data, v.Name
+		end
+		
 	end)
 
-	assert(success, `required data could not been executed for {name}`)
+	assert(success, `data could not execute for {name or v.Name}`)
 
-	if scripts.test == true then
-		if RunService:IsStudio() then
+	if type(scripts) == "table" then
+
+		if scripts.test == true then
+			if RunService:IsStudio() then
+				local message = Connection(scripts, name, ...)
+				messageInfo(ignorePrint, message)
+			end
+		elseif scripts.live == true then
 			local message = Connection(scripts, name, ...)
 			messageInfo(ignorePrint, message)
 		end
-	elseif scripts.live == true then
+
+	end
+
+	if type(scripts) == "function" then
 		local message = Connection(scripts, name, ...)
 		messageInfo(ignorePrint, message)
 	end
@@ -131,9 +149,7 @@ end
 
 function InitFolder(Folder: Instance, ignorePrint, ...: any)
 
-	for i, v in ipairs(Folder:GetDescendants()) do
-		local Start = os.clock()
-
+	for _, v in ipairs(Folder:GetDescendants()) do
 		if v:IsA("ModuleScript") then
 			task.spawn(MakeAjustment, v, ignorePrint, ...)
 		end
@@ -144,10 +160,7 @@ function InitTable(Table, ignorePrint, ...)
 	for _, Instances in pairs(Table) do
 		if typeof(Instances) == "Instance" then 
 			InitFolder(Instances, ignorePrint, ...)
-			return
-		end
-
-		if typeof(Instances) == "table" then 
+		elseif typeof(Instances) == "table" then 
 			InitTable(Instances, ignorePrint, ...)
 		end
 	end
