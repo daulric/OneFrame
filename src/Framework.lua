@@ -122,7 +122,7 @@ function MakeAjustment(v, ignorePrint, ...)
 			local message = Connection(scripts, name, ...)
 			messageInfo(ignorePrint, message)
 		end
-	elseif scripts.live then
+	elseif scripts.live == true then
 		local message = Connection(scripts, name, ...)
 		messageInfo(ignorePrint, message)
 	end

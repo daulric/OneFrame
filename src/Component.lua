@@ -49,10 +49,10 @@ function Component:extend(name: string, test: boolean?): Help.Component
 	class.name = tostring(name)
 
 	if test then
-		class.live = true
+		class.test = true
 		TestClass[tostring(name)] = class
 	else
-		class.test = true
+		class.live = true
 		LiveClass[tostring(name)] = class
 	end
 
