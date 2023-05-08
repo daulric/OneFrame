@@ -8,13 +8,11 @@ export type Framework = {
 	name: string
 }
 
-local Utilites = script.Parent:WaitForChild("Utilities")
-local Tools = script.Parent:WaitForChild("Tools")
-local Packages = script.Parent.Parent
+local Packages = script.Parent:WaitForChild("Packages")
+
 local Promise = require(Packages:WaitForChild("Promise"))
 
 local RunService = game:GetService("RunService")
-local compile = require(Tools.compile)
 
 function render(scripts, Items)
 
@@ -117,11 +115,8 @@ function MakeAjustment(v, ignorePrint, ...)
 		return Data, Data.name
 	end)
 
-	if not success then
-		warn(`required data could not been executed for {name}`)
-		return
-	end
-	
+	assert(success, `required data could not been executed for {name}`)
+
 	if scripts.test == true then
 		if RunService:IsStudio() then
 			local message = Connection(scripts, name, ...)
@@ -160,15 +155,19 @@ end
 
 function Framework(Folder: Instance | {[any]: any}, ignorePrint, ...: any)
 	
-	local Success = Promise.new(function(resolve, reject)
-		resolve()
-	end)
+	local items = unpack({...})
 
-	if typeof(Folder) == "Instance" then 
-		InitFolder(Folder, ignorePrint, ...)
-	elseif typeof(Folder) == "table" then
-		InitTable(Folder, ignorePrint, ...)
-	end
+	local Success = Promise.new(function(resolve, reject)
+		if typeof(Folder) == "Instance" then
+			InitFolder(Folder, ignorePrint, items)
+			resolve(items)
+		elseif typeof(Folder) == "table" then
+			InitTable(Folder, ignorePrint, items)
+			resolve(items)
+		else
+			reject(items)
+		end
+	end)
 
 	return Success
 end

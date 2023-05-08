@@ -1,6 +1,6 @@
 local OneFrame = require(game.ReplicatedStorage.OneFrame)
 local Controllers = OneFrame.Controllers
-local Signal = require(OneFrame.Utils:WaitForChild("Signal"))
+local Signal = OneFrame.Utils.Signal
 
 local Test = Controllers.CreateController({
     Name = "test",

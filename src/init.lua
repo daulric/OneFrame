@@ -6,6 +6,7 @@ local compile = require(Tools.compile)
 
 local Framework = require(script:WaitForChild("Framework"))
 local Controllers = require(script:WaitForChild("Controllers"))
+local Packages = script:WaitForChild("Packages")
 
 local Services = {
 	Event = require(Service:WaitForChild("Event")),
@@ -22,7 +23,8 @@ local OneFrame = {
 	Start = Framework,
 	Controllers = Controllers,
 	Utils = Utils,
-	Services = Services
+	Services = Services,
+	Promise = require(Packages.Promise)
 }
 
 compile(OneFrame)

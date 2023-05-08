@@ -2,25 +2,29 @@ return function ()
     local Framework = require(script.Parent:WaitForChild("Framework"))
 
     describe("Framework Component", function()
-        local testFolder = game:GetService("ReplicatedStorage"):WaitForChild("Test")
 
         it("Components Should Run", function()
+            local testFolder = game:GetService("ReplicatedStorage"):WaitForChild("Test")
             local Start = Framework(testFolder)
 
             Start:andThen(function()
-                print("started server!")
-            end)
+                print("Folder was ran!")
+            end):catch(warn)
 
-            expect(Start).to.be.ok() 
+            expect(Start).to.be.ok()
         end)
 
         it("should collect and run instances from a table", function()
-            local testFolder = {
+            local testtable = {
                 game:GetService("ReplicatedStorage"):WaitForChild("TestInTable")
             }
 
-            local Start = Framework(testFolder)
-            expect(Start).to.be.a("boolean")
+            local Start = Framework(testtable)
+
+            Start:andThen(function()
+                print("table was ran!")
+            end):catch(warn)
+
             expect(Start).to.be.ok()
         end)
 
