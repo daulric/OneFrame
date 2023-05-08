@@ -4,7 +4,6 @@
 /build
 /.vscode
 /docs
-/images
 /Packages
 /src/wally.lock
 /src/wally.toml
