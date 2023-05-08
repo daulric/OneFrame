@@ -52,4 +52,4 @@ return testComponent
 
 
 # **Install OneFrame Today**
-[<img src="https://wally.run/static/wally-logo.7f93c2d5.svg" width="200" height="100">](https://wally.run/package/daulric/oneframe) [<img src="./images/installation.png" width="200" height="100">](./OneFrame.rbxm)
+[<img src="https://wally.run/static/wally-logo.7f93c2d5.svg" width="200" height="100">](https://wally.run/package/daulric/oneframe) [<img src="./images/installation2.png" width="200" height="100">](./OneFrame.rbxm)
