@@ -18,7 +18,7 @@ This module was created to be:
 
 ```lua
 local OneFrame = require(path.to.module)
-local testFolder = path.to.folder or { path.to.folder }
+local testFolder = path.to.folder or { path.to.folder, path.to.folder2 }
 
 OneFrame.Start(testFolder, ignorePrint: boolean?, ...any --[[ data / params here]]):andThen(function()
     print("Running Folder Finished!")
