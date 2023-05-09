@@ -26,8 +26,9 @@ end)
 ```
 **What happens when `.Start()` is called?**
 - It will execute any modular code that is a component or a function.
-- Modules that is not a component or a function, the module will be skipped!
-- This wil return a promise when all the modules are executed!
+- Modules that are not a component or a function will be skipped!
+- It will return a promise when all the modules are executed!
+- It can execute codes from multiple paths within in a table
 
 ## Creating Components To Be Executed
 This wil create a component that will be executed when `.Start()` is called.
