@@ -1,3 +1,6 @@
 {
-    "className": "RemoteFunction"
+    "className": "RemoteFunction",
+    "properties": {
+        
+    }
 }

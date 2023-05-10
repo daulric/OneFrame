@@ -1,4 +1,5 @@
 {
     "robloxLsp.workspace.rojoProjectFile": "place",
     "livePreview.defaultPreviewPath": "/website/index.html",
+    "rojoViewer.sourcemap.rojoProjectFile": "place.project.json",
 }

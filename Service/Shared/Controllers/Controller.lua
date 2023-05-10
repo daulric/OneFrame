@@ -1,6 +1,5 @@
 local OneFrame = require(game.ReplicatedStorage.OneFrame)
 local Controllers = OneFrame.Controllers
-local Signal = OneFrame.Utils.Signal
 
 local Test = Controllers.CreateController({
     Name = "test",
@@ -8,7 +7,8 @@ local Test = Controllers.CreateController({
     Gold = 10,
     Silver = 100,
     Emerald = 1,
-    event = Signal.new()
+    event = OneFrame.CreateSignal(),
+    bindable = OneFrame.CreateBinableSignal()
 })
 
 function Test:Get()

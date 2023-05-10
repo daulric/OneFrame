@@ -16,18 +16,25 @@ local Services = {
 	Input = require(Service:WaitForChild("Input")),
 }
 
-local Utils = {
-	Signal = require(Utilities:WaitForChild("Signal")),
-	Cleany = require(Utilities:WaitForChild("Signal"))
-}
+local Cleany = require(Utilities.Cleany)
+local Signal = require(Utilities.Signal)
+local BindableSignal = require(Utilities.BinableSignal)
 
 local OneFrame = {
+	-- Main Stuff
 	Component = Component,
 	Start = Framework,
 	Controllers = Controllers,
-	Utils = Utils,
-	Services = Services,
-	Promise = Promise
+
+	-- Services!
+	Input = Services.Input,
+	Event =  Services.Event,
+	Promise = Promise,
+
+	-- Utilites!
+	CreateCleany = Cleany.create,
+	CreateSignal = Signal.new,
+	CreateBinableSignal = BindableSignal.new,
 }
 
 compile(OneFrame)

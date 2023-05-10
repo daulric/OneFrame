@@ -6,8 +6,6 @@ local RunService = game:GetService("RunService")
 
 local RemoteEvent = script:WaitForChild("RemoteEvent")
 local RemoteFunction = script:WaitForChild("RemoteFunction")
-local BindableEvent = script:WaitForChild("BindableEvent")
-local BindableFunction = script:WaitForChild("BindableFunction")
 
 function Event:Listen(id: string, callback: (...any) -> ...any)
     local listener = {}
@@ -36,12 +34,8 @@ function Event.Send(id: string)
         RemoteEvent:FireClient(player, id, ...)
     end
 
-    function SendType:AllClients(...: any)
-        RemoteEvent:FireAllClients(id, ...)
-    end
-
-    function SendType:Cross(...: any)
-        BindableEvent:Fire(id, ...)
+    function SendType:AllClients(...)
+        RemoteEvent:FireAllClients(...)
     end
 
     table.freeze(SendType)
@@ -59,10 +53,6 @@ function Event.Get(id: string)
 
     function SendType:Client(player: Player, ...: any)
         return RemoteFunction:InvokeClient(player, ...)
-    end
-
-    function SendType:Cross(...: any)
-        return BindableFunction:Invoke(id, ...)
     end
 
     table.freeze(SendType)
@@ -102,15 +92,6 @@ function ClientListen(id: string, ...)
 
 end
 
-function CrossListen(id: string, ...)
-    local connection = SuccessfulConnection(id)
-
-    if connection and connection.__callback then
-        return connection.__callback(...)
-    end
-
-end
-
 if RunService:IsServer() then
     RemoteEvent.OnServerEvent:Connect(ServerListen)
     RemoteFunction.OnServerInvoke = ServerListen
@@ -120,8 +101,5 @@ if RunService:IsClient() then
     RemoteEvent.OnClientEvent:Connect(ClientListen)
     RemoteFunction.OnClientInvoke = ClientListen
 end
-
-BindableEvent.Event:Connect(CrossListen)
-BindableFunction.OnInvoke = CrossListen
 
 return Event

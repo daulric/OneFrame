@@ -41,12 +41,6 @@ return function ()
                 end)
             end
 
-            it("should send info via bindable event", function()
-                expect(function()
-                    TestSend:Cross("idk", "hhei", "test")
-                end).to.be.ok()
-            end)
-
         end)
 
         it("should create a return signal",  function()
@@ -71,11 +65,6 @@ return function ()
                     
                 end)
             end
-
-            it("should get info via bindable function", function()
-                local Info = TestGet:Cross("Hello", "Idk", "hi")
-                expect(Info).to.throw(nil)
-            end)
 
         end)
         

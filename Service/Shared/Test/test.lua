@@ -32,9 +32,7 @@ function New:render(...)
 	print("working")
 	local Send = self.Event.Send("idk")
 	local Get = self.Event.Get("idk")
-	Send:Cross("idk", 1+ 1)
 	print("items:", ...)
-	print(Get:Cross("hello", "idk"))
 	self.Cleanup:Remove(self.part)
 end
 

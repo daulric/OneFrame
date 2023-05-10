@@ -10,6 +10,8 @@ export type Framework = {
 
 local Packages = script.Parent:WaitForChild("Packages")
 
+hello = "heh"
+
 local Promise = require(Packages:WaitForChild("Promise"))
 
 local RunService = game:GetService("RunService")
