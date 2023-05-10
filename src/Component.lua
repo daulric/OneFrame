@@ -63,15 +63,9 @@ function Component:extend(name: string, test: boolean?): Help.Component
 end
 
 function Component:setState(value: any)
-	if not self.state then
-		warn("there is no state to this component")
-		return
-	end
 
-	if not table.isfrozen(self.state) and self.state.isState ~= true then
-		warn("this table was not properly set!")
-		return
-	end
+	assert(self.state, "there is no state to this component")
+	assert(table.isfrozen(self.state) or self.state.isState, `this table is not properly set! {self.state}`)
 
 	local NewClassState = table.clone(self.state)
 

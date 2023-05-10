@@ -15,13 +15,12 @@ local Promise = require(Packages:WaitForChild("Promise"))
 local RunService = game:GetService("RunService")
 
 function render(scripts, ...)
-
 	if scripts.render then
-		local renderSuccess, err = pcall(function(...)
+		local success, err = pcall(function(...)
 			task.spawn(scripts.render, scripts, ...)
 		end, ...)
-
-		if not renderSuccess then
+		
+		if not success then
 			warn(err)
 		end
 
@@ -34,14 +33,10 @@ function preload(scripts, ...)
 			task.spawn(scripts.preload, scripts, ...)
 		end, ...)
 
-		if preloadSuccess then
-			render(scripts, ...)
-		else
+		if not preloadSuccess then
 			warn(err)
 		end
 
-	elseif not scripts.preload then
-		render(scripts, ...)
 	end
 end
 
@@ -89,6 +84,8 @@ function Connection(scripts: Framework, scriptName, ...: any)
 			init(scripts, ...)
 			task.wait()
 			preload(scripts, ...)
+			task.wait()
+			render(scripts, ...)
 		end, ...)
 	
 		if scripts.closing and RunService:IsServer() then
@@ -100,7 +97,16 @@ function Connection(scripts: Framework, scriptName, ...: any)
 
 	if typeof(scripts) == "function" then
 		name = scriptName
-		task.spawn(scripts, ...)
+
+		local items = {...}
+		local count = select("#", ...)
+
+		local function renderFunc (callback)
+			return callback(unpack(items, 1, count))
+		end
+
+		task.spawn(scripts, renderFunc)
+
 	end
 
 	local End = os.clock() - Start
@@ -166,20 +172,24 @@ function InitTable(Table, ignorePrint, ...)
 	end
 end
 
-function Framework(Folder: Instance | {[any]: any}, ignorePrint, ...: any)
-	
-	local items = unpack({...})
+type folder = Instance | {[any]: any}
+
+function Framework(Folder: folder, ignorePrint: boolean?, ...: any)
+
+	local items = {...}
+	local count = select("#", ...)
 
 	local Success = Promise.new(function(resolve, reject)
 		if typeof(Folder) == "Instance" then
-			InitFolder(Folder, ignorePrint, items)
+			InitFolder(Folder, ignorePrint, unpack(items, 1, count))
 			resolve(items)
 		elseif typeof(Folder) == "table" then
-			InitTable(Folder, ignorePrint, items)
+			InitTable(Folder, ignorePrint, unpack(items, 1, count))
 			resolve(items)
 		else
 			reject(items)
 		end
+
 	end)
 
 	return Success

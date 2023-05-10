@@ -57,9 +57,20 @@ return testComponent
 ```
 
 ## Creating Functional Module to be Executed
-This will execute the function when `.Start()` is called
+This will execute the function when `.Start()` is called.
+The `render` parameter in the functional module will execute a function with all the parameters called in `.Start()`.
+
 ```lua
-return function (...any --[[params here]])
+return function (render)
+
+    render(function(...) --[[params here]]  
+        print(...)
+    end)
+
+    render(function()
+        print("another render!")
+    end)
+
     print(params here!)
 end
 ```

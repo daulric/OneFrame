@@ -5,7 +5,7 @@ return function ()
 
         it("Components Should Run from folder", function()
             local testFolder = game:GetService("ReplicatedStorage"):WaitForChild("Test")
-            local Start = Framework(testFolder)
+            local Start = Framework(testFolder, true, "hello", "test")
 
             Start:andThen(function()
                 print("Folder was ran!")
@@ -19,7 +19,7 @@ return function ()
                 game:GetService("ReplicatedStorage"):WaitForChild("TestInTable")
             }
 
-            local Start = Framework(testtable)
+            local Start = Framework(testtable, nil, "hello", "test")
 
             Start:andThen(function()
                 print("table was ran!")

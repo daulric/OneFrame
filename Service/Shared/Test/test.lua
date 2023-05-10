@@ -17,19 +17,23 @@ function New:init()
 	self.part.Parent = workspace
 end
 
-function New:preload()
+function New:preload(...)
 	
 	self.Cleanup:Connect(workspace.ChildAdded, function(child)
 		print("cleaning connection working: child added to workspace", child)
 	end)
+
+	print(...)
+
     print("preloading")
 end
 
-function New:render()
+function New:render(...)
 	print("working")
 	local Send = self.Event.Send("idk")
 	local Get = self.Event.Get("idk")
 	Send:Cross("idk", 1+ 1)
+	print("items:", ...)
 	print(Get:Cross("hello", "idk"))
 	self.Cleanup:Remove(self.part)
 end
