@@ -1,6 +1,6 @@
-# Starting OneFrame
+# Start
 
-You can start OneFrame by simply doing this
+You can run the code in a folder or table by just doing this:
 ```lua
 local OneFrame = require(path.to.module)
 local testFolder = path.to.folder or { path.to.folder, path.to.folder2 }
