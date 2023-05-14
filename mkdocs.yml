@@ -1,0 +1,31 @@
+site_name: OneFrame
+
+markdown_extensions:
+  - def_list
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+theme:
+  name: material
+  favicon: https://raw.githubusercontent.com/daulric/images/main/logo2.png
+  logo: https://raw.githubusercontent.com/daulric/images/main/logo2.png
+  palette:
+    primary: default
+    accent: indigo
+    scheme: slate
+    toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+
+
+  features:
+    content.code.copy
+    content.code.select
+    content.code.annotate

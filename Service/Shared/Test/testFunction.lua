@@ -1,4 +1,4 @@
-return function(render)
+return function(render, closing)
 
     render(function(...)
         local items = {...}
@@ -9,6 +9,10 @@ return function(render)
 
     render(function()
         print("can also render another function!")
+    end)
+
+    closing(function()
+        print("closing the game; its working!")
     end)
 
 end

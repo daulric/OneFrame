@@ -61,7 +61,7 @@ This will execute the function when `.Start()` is called.
 The `render` parameter in the functional module will execute a function with all the parameters called in `.Start()`.
 
 ```lua
-return function (render)
+return function (render, closing)
 
     render(function(...) --[[params here]]  
         print(...)
@@ -69,6 +69,11 @@ return function (render)
 
     render(function()
         print("another render!")
+    end)
+
+    closing(function(...)
+        print("game server is closing;", ...)
+        -- this will run when game server is closing
     end)
 
     print(params here!)

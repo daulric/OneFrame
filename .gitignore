@@ -3,7 +3,6 @@
 /Service/Backpack
 /build
 /.vscode
-/docs
 /Packages
 /src/wally.lock
-/src/wally.toml
+/site

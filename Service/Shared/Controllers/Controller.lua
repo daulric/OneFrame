@@ -16,4 +16,9 @@ function Test:Get()
     return self.Diamond
 end
 
+function Test:Send()
+    self.event:Fire()
+    self.bindable:Fire()
+end
+
 return Test

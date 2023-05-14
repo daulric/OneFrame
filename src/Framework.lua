@@ -107,7 +107,13 @@ function Connection(scripts: Framework, scriptName, ...: any)
 			return callback(unpack(items, 1, count))
 		end
 
-		task.spawn(scripts, renderFunc)
+		local function closingFunc(callback)
+			game:BindToClose(function()
+				callback(unpack(items, 1, count))
+			end)
+		end
+
+		task.spawn(scripts, renderFunc, closingFunc)
 
 	end
 
