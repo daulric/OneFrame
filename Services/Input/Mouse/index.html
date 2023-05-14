@@ -12,6 +12,8 @@
         <link rel="prev" href="../Keyboard/">
       
       
+        <link rel="next" href="../../../Utilities/BindableSignal/">
+      
       <link rel="icon" href="https://raw.githubusercontent.com/daulric/images/main/logo2.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.12">
     
@@ -63,6 +65,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#mouse" class="md-skip">
+          Skip to content
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -197,7 +204,7 @@
   
     <li class="md-nav__item">
       <a href="../../../Start/" class="md-nav__link">
-        Starting OneFrame
+        Start
       </a>
     </li>
   
@@ -283,6 +290,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../ContextAction/" class="md-nav__link">
+        Context Action
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../Keyboard/" class="md-nav__link">
         Keyboard
       </a>
@@ -303,10 +324,174 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Mouse
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         Mouse
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contructing-a-new-mouse" class="md-nav__link">
+    Contructing a New Mouse
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#isleftdown" class="md-nav__link">
+    IsLeftDown
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isrightdown" class="md-nav__link">
+    IsRightDown
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getdelta" class="md-nav__link">
+    GetDelta
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getray" class="md-nav__link">
+    GetRay
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#raycast" class="md-nav__link">
+    Raycast
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project" class="md-nav__link">
+    Project
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lock" class="md-nav__link">
+    Lock
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lockcenter" class="md-nav__link">
+    LockCenter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unlock" class="md-nav__link">
+    Unlock
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#destroy" class="md-nav__link">
+    Destroy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signals" class="md-nav__link">
+    Signals
+  </a>
+  
+    <nav class="md-nav" aria-label="Signals">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#leftdown" class="md-nav__link">
+    LeftDown
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#leftup" class="md-nav__link">
+    LeftUp
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rightdown" class="md-nav__link">
+    RightDown
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rightup" class="md-nav__link">
+    RightUp
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scrolled" class="md-nav__link">
+    Scrolled
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -315,6 +500,69 @@
           
         </ul>
       </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          Utilities
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Utilities
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Utilities/BindableSignal/" class="md-nav__link">
+        Bindable Signal
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Utilities/Signal/" class="md-nav__link">
+        Signal
+      </a>
     </li>
   
 
@@ -343,6 +591,154 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contructing-a-new-mouse" class="md-nav__link">
+    Contructing a New Mouse
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#isleftdown" class="md-nav__link">
+    IsLeftDown
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isrightdown" class="md-nav__link">
+    IsRightDown
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getdelta" class="md-nav__link">
+    GetDelta
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getray" class="md-nav__link">
+    GetRay
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#raycast" class="md-nav__link">
+    Raycast
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project" class="md-nav__link">
+    Project
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lock" class="md-nav__link">
+    Lock
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lockcenter" class="md-nav__link">
+    LockCenter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unlock" class="md-nav__link">
+    Unlock
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#destroy" class="md-nav__link">
+    Destroy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signals" class="md-nav__link">
+    Signals
+  </a>
+  
+    <nav class="md-nav" aria-label="Signals">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#leftdown" class="md-nav__link">
+    LeftDown
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#leftup" class="md-nav__link">
+    LeftUp
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rightdown" class="md-nav__link">
+    RightDown
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rightup" class="md-nav__link">
+    RightUp
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scrolled" class="md-nav__link">
+    Scrolled
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -357,9 +753,83 @@
                   
 
 
-  <h1>Mouse</h1>
-
-
+<h1 id="mouse">Mouse</h1>
+<p>Mouse Module for OneFrame</p>
+<h2 id="contructing-a-new-mouse">Contructing a New Mouse</h2>
+<div class="language-lua highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">Mouse</span><span class="p">.</span><span class="n">new</span><span class="p">()</span> <span class="p">:</span> <span class="n">Mouse</span>
+</span></code></pre></div>
+<h2 id="methods"><strong>Methods</strong></h2>
+<h3 id="isleftdown">IsLeftDown</h3>
+<p><div class="language-lua highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">Mouse</span><span class="p">:</span><span class="n">IsLeftDown</span><span class="p">()</span> <span class="p">:</span> <span class="n">boolean</span>
+</span></code></pre></div>
+This checks if left mouse click is pressed</p>
+<h3 id="isrightdown">IsRightDown</h3>
+<p><div class="language-lua highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">Mouse</span><span class="p">:</span><span class="n">IsRightDown</span><span class="p">()</span> <span class="p">:</span> <span class="n">boolean</span>
+</span></code></pre></div>
+This checks if right mouse click is pressed</p>
+<h3 id="getdelta">GetDelta</h3>
+<p><div class="language-lua highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">Mouse</span><span class="p">:</span><span class="n">GetDelta</span><span class="p">()</span>
+</span></code></pre></div>
+This gets the mouse delta</p>
+<h3 id="getray">GetRay</h3>
+<div class="language-lua highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">Mouse</span><span class="p">:</span><span class="n">GetRay</span><span class="p">(</span><span class="n">override</span><span class="p">:</span> <span class="n">Vector2</span><span class="err">?</span><span class="p">)</span>
+</span></code></pre></div>
+<p>This returns a viewpoint ray</p>
+<h3 id="raycast">Raycast</h3>
+<div class="language-lua highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">Mouse</span><span class="p">:</span><span class="n">Raycast</span><span class="p">(</span><span class="n">RaycastParams</span><span class="p">:</span> <span class="n">RaycastParams</span><span class="p">,</span> <span class="n">distance</span><span class="p">:</span> <span class="n">number</span><span class="err">?</span><span class="p">,</span> <span class="n">override</span><span class="p">:</span> <span class="n">Vector2</span><span class="err">?</span><span class="p">)</span>
+</span></code></pre></div>
+<p>This returns a workspace raycast</p>
+<h3 id="project">Project</h3>
+<div class="language-lua highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">Mouse</span><span class="p">:</span><span class="n">Project</span><span class="p">(</span><span class="n">distance</span><span class="p">:</span> <span class="n">number</span><span class="err">?</span><span class="p">,</span> <span class="n">override</span><span class="p">:</span> <span class="n">Vector2</span><span class="err">?</span><span class="p">)</span>
+</span></code></pre></div>
+<p>This project the distance of the mouse</p>
+<h3 id="lock">Lock</h3>
+<div class="language-lua highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">Mouse</span><span class="p">:</span><span class="n">Lock</span><span class="p">()</span>
+</span></code></pre></div>
+<p>This locks the mouse at its current position on the screen</p>
+<h3 id="lockcenter">LockCenter</h3>
+<div class="language-lua highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">Mouse</span><span class="p">:</span><span class="n">LockCenter</span><span class="p">()</span>
+</span></code></pre></div>
+<p>This locks the mouse in the center of the screen</p>
+<h3 id="unlock">Unlock</h3>
+<div class="language-lua highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">Mouse</span><span class="p">:</span><span class="n">Unlock</span><span class="p">()</span>
+</span></code></pre></div>
+<p>This unlocks the mouse from the screen</p>
+<h3 id="destroy">Destroy</h3>
+<div class="language-lua highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">Mouse</span><span class="p">:</span><span class="n">Destroy</span>
+</span></code></pre></div>
+<p>This destroys the mouse</p>
+<h2 id="signals"><strong>Signals</strong></h2>
+<p>Signals are created when <code>.new</code> is called</p>
+<h3 id="leftdown">LeftDown</h3>
+<div class="language-lua highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">Mouse</span><span class="p">.</span><span class="n">LeftDown</span><span class="p">:</span><span class="n">Connect</span><span class="p">(</span><span class="kr">function</span><span class="p">()</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;left click pressed&quot;</span><span class="p">)</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="kr">end</span><span class="p">)</span>
+</span></code></pre></div>
+<p>This fires when left mouse click is pressed.</p>
+<h3 id="leftup">LeftUp</h3>
+<div class="language-lua highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">Mouse</span><span class="p">.</span><span class="n">LeftUp</span><span class="p">:</span><span class="n">Connect</span><span class="p">(</span><span class="kr">function</span><span class="p">()</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;left click released&quot;</span><span class="p">)</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="kr">end</span><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="rightdown">RightDown</h3>
+<div class="language-lua highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">Mouse</span><span class="p">.</span><span class="n">RightDown</span><span class="p">:</span><span class="n">Connect</span><span class="p">(</span><span class="kr">function</span><span class="p">()</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;right click pressed&quot;</span><span class="p">)</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="kr">end</span><span class="p">)</span>
+</span></code></pre></div>
+<p>This fires when right mouse click is pressed.</p>
+<h3 id="rightup">RightUp</h3>
+<div class="language-lua highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">Mouse</span><span class="p">.</span><span class="n">RightUp</span><span class="p">:</span><span class="n">Connect</span><span class="p">(</span><span class="kr">function</span><span class="p">()</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;right click released&quot;</span><span class="p">)</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="kr">end</span><span class="p">)</span>
+</span></code></pre></div>
+<p>This fires when right mouse click is released.</p>
+<h3 id="scrolled">Scrolled</h3>
+<div class="language-lua highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">Mouse</span><span class="p">.</span><span class="n">Scrolled</span><span class="p">:</span><span class="n">Connect</span><span class="p">(</span><span class="kr">function</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;mouse scrolled; current position&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="kr">end</span><span class="p">)</span>
+</span></code></pre></div>
+<p>This fires when you scroll.</p>
 
 
 
