@@ -47,3 +47,6 @@ theme:
     content.code.select
     content.code.annotate
     content.tooltips
+    navigation.tabs
+    navigation.tracking
+    #navigation.tabs.sticky

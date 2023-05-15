@@ -3,7 +3,7 @@
 This is a layout of the OneFrame main module.
 
 ```
-OneFrame
+OneFrame:
     - Controllers -> Controllers
     - Promise -> Promise
     - Event -> Event
