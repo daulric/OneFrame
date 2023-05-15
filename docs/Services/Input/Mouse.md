@@ -10,6 +10,10 @@ Mouse.new() : Mouse
 
 ## **Methods**
 
+!!! warning "Before Using These Methods"
+
+    Remember to call `.new` before using these methods, otherwise the code won't work.
+
 ### IsLeftDown
 
 ```lua

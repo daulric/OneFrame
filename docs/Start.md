@@ -10,4 +10,6 @@ OneFrame.Start(testFolder, ignorePrint: boolean?, ...any):andThen(function()
 end)
 ```
 You can basically run a folder or a table with folders.
-This executes code using [Promise](https://eryn.io/roblox-lua-promise/) Implementation by evaera.
+
+!!! info "Promise"
+    This executes code using [Promise](https://eryn.io/roblox-lua-promise/) module by evaera.

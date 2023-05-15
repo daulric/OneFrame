@@ -10,6 +10,11 @@ Keyboard.new() : Keyboard
 This contructs a new keyboard
 
 ## **Methods**
+
+!!! warning "Before Using These Methods"
+
+    Remember to call `.new` before using these methods, otherwise the code won't work.
+
 ### :IsKeyDown
 
 ```lua

@@ -10,6 +10,10 @@ This contructs a new signal
 
 ## **Methods**
 
+!!! warning "Before Using These Methods"
+
+    Remember to call `.new` before using these methods, otherwise the code won't work.
+
 ### Connect
 ```lua
 Signal:Connect(function(...)

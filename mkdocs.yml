@@ -1,21 +1,38 @@
 site_name: OneFrame
+repo_url: https://github.com/daulric/OneFrame
+repo_name: daulric/OneFrame
 
 markdown_extensions:
   - def_list
+  - footnotes
+  - abbr
+  - attr_list
+  - pymdownx.snippets
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - admonition
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
       pygments_lang_class: true
-  - pymdownx.inlinehilite
-  - pymdownx.snippets
-  - pymdownx.superfences
   - pymdownx.tasklist:
       custom_checkbox: true
+
 
 theme:
   name: material
   favicon: https://raw.githubusercontent.com/daulric/images/main/logo2.png
   logo: https://raw.githubusercontent.com/daulric/images/main/logo2.png
+  icon: 
+    repo: fontawesome/brands/github
+
   palette:
     primary: default
     accent: indigo
@@ -29,3 +46,4 @@ theme:
     content.code.copy
     content.code.select
     content.code.annotate
+    content.tooltips
