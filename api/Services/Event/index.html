@@ -9,24 +9,24 @@
       
       
       
-        <link rel="prev" href="../Component/">
+        <link rel="prev" href="../../Main%20Aspect/Functional%20Component/">
       
       
-        <link rel="next" href="../../Services/Event/">
+        <link rel="next" href="../Input/ContextAction/">
       
       <link rel="icon" href="https://raw.githubusercontent.com/daulric/images/main/logo2.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.12">
     
     
       
-        <title>Controllers - OneFrame</title>
+        <title>Event - OneFrame</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.85bb2934.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.85bb2934.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.a6bdf11c.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.a6bdf11c.min.css">
       
       
 
@@ -42,7 +42,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#controllers" class="md-skip">
+        <a href="#event" class="md-skip">
           Skip to content
         </a>
       
@@ -79,11 +79,9 @@
     
       
 
-  
-
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="OneFrame" class="md-header__button md-logo" aria-label="OneFrame" data-md-component="logo">
+    <a href="../../.." title="OneFrame" class="md-header__button md-logo" aria-label="OneFrame" data-md-component="logo">
       
   <img src="https://raw.githubusercontent.com/daulric/images/main/logo2.png" alt="logo">
 
@@ -101,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Controllers
+              Event
             
           </span>
         </div>
@@ -167,6 +165,73 @@
       
         
           
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../installation/" class="md-tabs__link">
+      Installation
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link md-tabs__link--active">
+        Api
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../examples/" class="md-tabs__link">
+        Examples
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -179,10 +244,12 @@
                   <div class="md-sidebar__inner">
                     
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="OneFrame" class="md-nav__button md-logo" aria-label="OneFrame" data-md-component="logo">
+    <a href="../../.." title="OneFrame" class="md-nav__button md-logo" aria-label="OneFrame" data-md-component="logo">
       
   <img src="https://raw.githubusercontent.com/daulric/images/main/logo2.png" alt="logo">
 
@@ -212,8 +279,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
-        Welcome to OneFrame
+      <a href="../../.." class="md-nav__link">
+        Home
       </a>
     </li>
   
@@ -227,23 +294,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Overview/" class="md-nav__link">
-        Overview of OneFrame
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Start/" class="md-nav__link">
-        Start
+      <a href="../../../installation/" class="md-nav__link">
+        Installation
       </a>
     </li>
   
@@ -264,17 +316,72 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
       
       
       
-        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          Api
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Api
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        Overview of OneFrame
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Start/" class="md-nav__link">
+        Start
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
           Main Aspect
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
-        <label class="md-nav__title" for="__nav_4">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_3">
           <span class="md-nav__icon md-icon"></span>
           Main Aspect
         </label>
@@ -286,13 +393,77 @@
   
   
     <li class="md-nav__item">
-      <a href="../Component/" class="md-nav__link">
+      <a href="../../Main%20Aspect/Component/" class="md-nav__link">
         Component
       </a>
     </li>
   
 
             
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Main%20Aspect/Controllers/" class="md-nav__link">
+        Controllers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Main%20Aspect/Functional%20Component/" class="md-nav__link">
+        Functional Component
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+          Services
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_3_4">
+          <span class="md-nav__icon md-icon"></span>
+          Services
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
           
             
               
@@ -310,12 +481,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Controllers
+          Event
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Controllers
+        Event
       </a>
       
         
@@ -334,30 +505,57 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#add-controllers" class="md-nav__link">
-    Add Controllers
+  <a href="#listening-for-events" class="md-nav__link">
+    Listening for Events
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#create-controller" class="md-nav__link">
-    Create Controller
+  <a href="#creating-a-send-signal" class="md-nav__link">
+    Creating a Send Signal
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#get-controller" class="md-nav__link">
-    Get Controller
+  <a href="#creating-a-get-signal" class="md-nav__link">
+    Creating a Get Signal
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#get-controllers" class="md-nav__link">
-    Get Controllers
+  <a href="#send-get-methods" class="md-nav__link">
+    Send / Get Methods
   </a>
+  
+    <nav class="md-nav" aria-label="Send / Get Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#server" class="md-nav__link">
+    :Server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#client" class="md-nav__link">
+    :Client
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#allclients" class="md-nav__link">
+    :AllClients
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -370,55 +568,6 @@
 
             
           
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-      
-      
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
-      
-      
-      
-        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
-          Services
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_5">
-          <span class="md-nav__icon md-icon"></span>
-          Services
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Services/Event/" class="md-nav__link">
-        Event
-      </a>
-    </li>
-  
-
-            
-          
             
               
   
@@ -430,17 +579,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4_2" >
       
       
       
-        <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_3_4_2" id="__nav_3_4_2_label" tabindex="0">
           Input
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_5_2">
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_4_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_4_2">
           <span class="md-nav__icon md-icon"></span>
           Input
         </label>
@@ -452,7 +601,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Services/Input/ContextAction/" class="md-nav__link">
+      <a href="../Input/ContextAction/" class="md-nav__link">
         Context Action
       </a>
     </li>
@@ -466,7 +615,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Services/Input/Keyboard/" class="md-nav__link">
+      <a href="../Input/Keyboard/" class="md-nav__link">
         Keyboard
       </a>
     </li>
@@ -480,7 +629,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Services/Input/Mouse/" class="md-nav__link">
+      <a href="../Input/Mouse/" class="md-nav__link">
         Mouse
       </a>
     </li>
@@ -500,11 +649,10 @@
     </li>
   
 
-    
-      
-      
-      
-
+            
+          
+            
+              
   
   
   
@@ -514,17 +662,17 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
       
       
       
-        <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+        <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
           Utilities
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_6">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_5">
           <span class="md-nav__icon md-icon"></span>
           Utilities
         </label>
@@ -550,8 +698,120 @@
   
   
     <li class="md-nav__item">
+      <a href="../../Utilities/Cleany/" class="md-nav__link">
+        Cleany
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../Utilities/Signal/" class="md-nav__link">
         Signal
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/" class="md-nav__link">
+        Start
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/Component/" class="md-nav__link">
+        Component
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/Controllers/" class="md-nav__link">
+        Controllers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/Functional%20Component/" class="md-nav__link">
+        Functional Component
       </a>
     </li>
   
@@ -591,30 +851,57 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#add-controllers" class="md-nav__link">
-    Add Controllers
+  <a href="#listening-for-events" class="md-nav__link">
+    Listening for Events
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#create-controller" class="md-nav__link">
-    Create Controller
+  <a href="#creating-a-send-signal" class="md-nav__link">
+    Creating a Send Signal
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#get-controller" class="md-nav__link">
-    Get Controller
+  <a href="#creating-a-get-signal" class="md-nav__link">
+    Creating a Get Signal
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#get-controllers" class="md-nav__link">
-    Get Controllers
+  <a href="#send-get-methods" class="md-nav__link">
+    Send / Get Methods
   </a>
+  
+    <nav class="md-nav" aria-label="Send / Get Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#server" class="md-nav__link">
+    :Server
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#client" class="md-nav__link">
+    :Client
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#allclients" class="md-nav__link">
+    :AllClients
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -636,26 +923,33 @@
   
 
 
-<h1 id="controllers">Controllers</h1>
-<h2 id="add-controllers">Add Controllers</h2>
-<p><div class="language-lua highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">Controllers</span><span class="p">:</span><span class="n">AddController</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Instance</span><span class="p">)</span>
+<h1 id="event">Event</h1>
+<p>This is the Event Service of OneFrame</p>
+<h2 id="listening-for-events">Listening for Events</h2>
+<p>This will listen any incoming signal to the server or client
+<div class="language-lua highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">Event</span><span class="p">:</span><span class="n">Listen</span><span class="p">(</span><span class="n">id</span><span class="p">:</span> <span class="n">string</span><span class="p">,</span> <span class="kr">function</span><span class="p">(...:</span> <span class="n">any</span><span class="p">)</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="nb">print</span><span class="p">(...)</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kr">end</span><span class="p">)</span>
+</span></code></pre></div></p>
+<h2 id="creating-a-send-signal">Creating a Send Signal</h2>
+<p>This creates a Send Signal to send data to the server or client
+<div class="language-lua highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kd">local</span> <span class="n">event</span> <span class="o">=</span> <span class="n">Event</span><span class="p">.</span><span class="n">Send</span><span class="p">(</span><span class="n">id</span><span class="p">:</span> <span class="n">string</span><span class="p">)</span>
+</span></code></pre></div></p>
+<h2 id="creating-a-get-signal">Creating a Get Signal</h2>
+<div class="language-lua highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kd">local</span> <span class="n">event</span> <span class="o">=</span> <span class="n">Event</span><span class="p">.</span><span class="n">Get</span><span class="p">(</span><span class="n">id</span><span class="p">:</span> <span class="n">string</span><span class="p">)</span>
 </span></code></pre></div>
-This adds controllers to the index to be recognized when using <code>:GetController</code>.</p>
-<h2 id="create-controller">Create Controller</h2>
-<div class="language-lua highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">Controllers</span><span class="p">:</span><span class="n">CreateController</span> <span class="p">{</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">Name</span><span class="p">:</span> <span class="n">string</span><span class="p">,</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="p">[</span><span class="n">any</span><span class="p">]:</span> <span class="n">any</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">}</span>
+<h2 id="send-get-methods">Send / Get Methods</h2>
+<p>If the Signal created was a Get Signal, it will return a value otherwise it won't return anything if Send Signal was created</p>
+<h3 id="server">:Server</h3>
+<div class="language-lua highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">event</span><span class="p">:</span><span class="n">Server</span><span class="p">(...)</span>
 </span></code></pre></div>
-<p>This will create controllers to be used in scripts.</p>
-<h2 id="get-controller">Get Controller</h2>
-<div class="language-lua highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">Controllers</span><span class="p">:</span><span class="n">GetController</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="n">string</span><span class="p">)</span>
+<h3 id="client">:Client</h3>
+<div class="language-lua highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">event</span><span class="p">:</span><span class="n">Client</span><span class="p">(</span><span class="n">player</span><span class="p">,</span> <span class="p">...)</span>
 </span></code></pre></div>
-<p>This gets controllers that was created.</p>
-<h2 id="get-controllers">Get Controllers</h2>
-<div class="language-lua highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">Controllers</span><span class="p">:</span><span class="n">GetControllers</span><span class="p">()</span>
+<h3 id="allclients">:AllClients</h3>
+<p><div class="language-lua highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">event</span><span class="p">:</span><span class="n">AllClients</span><span class="p">(...)</span>
 </span></code></pre></div>
-<p>This will return all the controllers.</p>
+This only works with Send Signals.</p>
 
 
 
@@ -693,10 +987,10 @@ This adds controllers to the index to be recognized when using <code>:GetControl
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": "content.code.copy content.code.select content.code.annotate content.tooltips", "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": "content.code.copy content.code.select content.code.annotate content.tooltips navigation.tabs navigation.tracking", "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.c2be25ad.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c2be25ad.min.js"></script>
       
     
   </body>
