@@ -31,15 +31,8 @@ function Component:extend(name: string, test: boolean?): Help.Component
 
 	local class = {}
 
-	if CheckId(LiveClass, name) then
-		warn(`{name} already exsist in execution table`)
-		return class
-	end
-
-	if CheckId(TestClass, name) then
-		warn(`{name} already exsist in test table : TEST TABLE WONT RUN IN GAME`)
-		return class
-	end
+	assert(CheckId(LiveClass, name) == nil, `{name} already exsist in execution table`)
+	assert(CheckId(TestClass, name) == nil, `{name} already exsist in execution table`)
 
 	class.state = {}
 	table.freeze(class.state)
